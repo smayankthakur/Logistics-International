@@ -25,14 +25,14 @@ body {
 
 /* ==================== GRADIENTS & BRANDING ==================== */
 .gradient-text {
-    background: linear-gradient(135deg, #0d9488 0%, #10b981 100%);
+    background: linear-gradient(135deg, #22a564 0%, #22a564 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
 
 .animate-gradient-text {
-    background: linear-gradient(135deg, #0d9488 0%, #10b981 50%, #14b8a6 100%);
+    background: linear-gradient(135deg, #22a564 0%, #22a564 50%, #14b8a6 100%);
     background-size: 200% 200%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -58,20 +58,59 @@ body {
     -webkit-backdrop-filter: blur(20px);
 }
 
-/* Navbar Glass */
+/* Navbar Glass - True Premium Glassmorphism */
 .glass-nav {
-    background: rgba(15, 23, 42, 0.7);
+    background: linear-gradient(135deg, rgba(13, 148, 136, 0.1) 0%, rgba(16, 185, 129, 0.08) 50%, rgba(20, 184, 166, 0.12) 100%);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(13, 148, 136, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+    position: relative;
+}
+
+.glass-nav::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, transparent 50%);
+    pointer-events: none;
 }
 
 .glass-nav.scrolled {
-    background: rgba(15, 23, 42, 0.95);
+    background: linear-gradient(135deg, rgba(13, 148, 136, 0.15) 0%, rgba(16, 185, 129, 0.12) 50%, rgba(20, 184, 166, 0.18) 100%);
     backdrop-filter: blur(30px);
     -webkit-backdrop-filter: blur(30px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-    border-bottom: 1px solid rgba(13, 148, 136, 0.3);
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Navbar Links - Premium Hover Effects */
+.glass-nav a:not(.glass-btn) {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.glass-nav a:not(.glass-btn)::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #22a564, #22a564);
+    transition: width 0.3s ease;
+    border-radius: 2px;
+}
+
+.glass-nav a:not(.glass-btn):hover::after {
+    width: 100%;
+}
+
+.glass-nav a:not(.glass-btn):hover {
+    text-shadow: 0 0 20px rgba(34, 165, 100, 0.5);
 }
 
 /* Glass Button */
@@ -96,7 +135,7 @@ body {
     content: '';
     position: absolute;
     inset: -2px;
-    background: linear-gradient(135deg, #0d9488, #10b981, #0d9488);
+    background: linear-gradient(135deg, #22a564, #22a564, #22a564);
     border-radius: inherit;
     z-index: -1;
     opacity: 0;
@@ -479,7 +518,7 @@ body {
     left: 50%;
     width: 100%;
     height: 2px;
-    background: linear-gradient(90deg, #0d9488, #10b981, #0d9488);
+    background: linear-gradient(90deg, #22a564, #22a564, #22a564);
     background-size: 200% 100%;
     animation: processGlow 3s linear infinite;
 }
@@ -517,9 +556,9 @@ body {
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background: #0d9488;
+    background: #22a564;
     border: 3px solid white;
-    box-shadow: 0 0 0 2px #0d9488;
+    box-shadow: 0 0 0 2px #22a564;
     z-index: 1;
 }
 

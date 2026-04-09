@@ -294,8 +294,14 @@ function initTestimonialSlider() {
         container.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
         
         dots.forEach(function(dot, i) {
-            dot.classList.toggle('bg-teal-500', i === currentSlide);
-            dot.classList.toggle('bg-slate-300', i !== currentSlide);
+            if (i === currentSlide) {
+                dot.classList.remove('bg-slate-300');
+                dot.style.backgroundColor = '#22a564';
+            } else {
+                dot.classList.remove('bg-[#22a564]');
+                dot.classList.add('bg-slate-300');
+                dot.style.backgroundColor = '';
+            }
         });
     }
     
@@ -382,12 +388,12 @@ function initContactForm() {
         const originalText = btn.textContent;
         btn.textContent = 'Message Sent!';
         btn.classList.add('bg-green-500');
-        btn.classList.remove('from-teal-500', 'to-green-500');
+        btn.classList.remove('from-[#22a564]', 'to-[#22a564]');
         
         setTimeout(function() {
             btn.textContent = originalText;
             btn.classList.remove('bg-green-500');
-            btn.classList.add('from-teal-500', 'to-green-500');
+            btn.classList.add('from-[#22a564]', 'to-[#22a564]');
             form.reset();
         }, 3000);
     });
