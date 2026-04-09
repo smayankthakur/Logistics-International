@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logistics International — Fast, Reliable Global Logistics</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+</head>
+<body class="bg-slate-900 text-slate-200 antialiased">
+    <!-- Cursor Glow Effect -->
+    <div id="cursor-glow" class="cursor-glow hidden md:block"></div>
+
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="fixed inset-0 bg-white z-50 flex items-center justify-center">
+        <div class="relative">
+            <div class="w-16 h-16 border-4 border-teal-100 border-t-teal-500 rounded-full animate-spin"></div>
+            <div class="absolute inset-0 w-16 h-16 border-4 border-green-100 border-t-green-500 rounded-full animate-spin" style="animation-direction: reverse; animation-duration: 1.5s;"></div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 glass-nav">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo + Brand -->
+                <a href="#" class="flex items-center space-x-3 group">
+                    <img src="logo.png" alt="Logistics International" class="h-10 w-auto object-contain">
+                    <div class="flex items-baseline">
+                        <span class="text-xl font-bold tracking-wide" style="color: #3f6474;">Logistics</span>
+                        <span class="text-xl font-bold tracking-wide" style="color: #85a595;">International</span>
+                    </div>
+                </a>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-slate-300 hover:text-teal-400 font-medium transition-all duration-300 relative group">
+                        Home
+                        <span class="absolute -bottom-1 left-0 w-0 h-px bg-gradient-to-r from-teal-500 to-green-500 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                    <a href="#services" class="text-slate-300 hover:text-teal-400 font-medium transition-all duration-300 relative group">
+                        Services
+                        <span class="absolute -bottom-1 left-0 w-0 h-px bg-gradient-to-r from-teal-500 to-green-500 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                    <!-- <a href="#tracking" class="text-slate-300 hover:text-teal-400 font-medium transition-all duration-300 relative group">
+                        Tracking
+                        <span class="absolute -bottom-1 left-0 w-0 h-px bg-gradient-to-r from-teal-500 to-green-500 group-hover:w-full transition-all duration-300"></span>
+                    </a> -->
+                    <a href="#contact" class="text-slate-300 hover:text-teal-400 font-medium transition-all duration-300 relative group">
+                        Contact
+                        <span class="absolute -bottom-1 left-0 w-0 h-px bg-gradient-to-r from-teal-500 to-green-500 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                </div>
+                
+                <!-- CTA Button -->
+                <a href="#contact" class="hidden md:inline-flex items-center px-6 py-3 bg-gradient-to-r from-teal-500 to-green-500 text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-teal-500/40 hover:scale-105 transition-all transform animate-glow">
+                    Get a Quote
+                </a>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-slate-800 transition-colors">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden glass border-t border-slate-700 bg-slate-900/95 backdrop-blur-xl">
+            <div class="px-4 py-4 space-y-3">
+                <a href="#home" class="block py-2 text-slate-300 hover:text-teal-400 font-medium">Home</a>
+                <a href="#services" class="block py-2 text-slate-300 hover:text-teal-400 font-medium">Services</a>
+                <!-- <a href="#tracking" class="block py-2 text-slate-300 hover:text-teal-400 font-medium">Tracking</a> -->
+                <a href="#contact" class="block py-2 text-slate-300 hover:text-teal-400 font-medium">Contact</a>
+                <a href="#contact" class="block py-3 bg-gradient-to-r from-teal-500 to-green-500 text-white font-semibold rounded-xl text-center">Get a Quote</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <!-- Particle Network Canvas (behind content) -->
+        <canvas id="particle-canvas" class="absolute inset-0 pointer-events-none z-0"></canvas>
+        
+        <!-- Gradient Mesh Background -->
+        <div class="gradient-mesh-3d"></div>
+        
+        <!-- Light Orbs -->
+        <div class="light-orb orb-1"></div>
+        <div class="light-orb orb-2"></div>
+        <div class="light-orb orb-3"></div>
+        
+        <!-- Particles -->
+        <div class="particles-container">
+            <div class="particle" style="top: 20%; left: 10%; animation-delay: 0s;"></div>
+            <div class="particle" style="top: 40%; left: 25%; animation-delay: -2s; width: 3px; height: 3px;"></div>
+            <div class="particle" style="top: 60%; left: 40%; animation-delay: -4s;"></div>
+            <div class="particle" style="top: 30%; left: 60%; animation-delay: -6s; width: 5px; height: 5px;"></div>
+            <div class="particle" style="top: 70%; left: 75%; animation-delay: -8s;"></div>
+            <div class="particle" style="top: 50%; left: 85%; animation-delay: -10s; width: 3px; height: 3px;"></div>
+            <div class="particle" style="top: 80%; left: 15%; animation-delay: -12s;"></div>
+            <div class="particle" style="top: 15%; left: 70%; animation-delay: -3s; width: 4px; height: 4px;"></div>
+            <div class="particle" style="top: 85%; left: 50%; animation-delay: -7s;"></div>
+            <div class="particle" style="top: 45%; left: 90%; animation-delay: -11s; width: 3px; height: 3px;"></div>
+        </div>
+        
+        <!-- Noise Overlay -->
+        <div class="noise-overlay"></div>
+        
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Left Content -->
+                <div class="hero-content">
+                    <div class="inline-flex items-center px-4 py-2 bg-teal-500/20 rounded-full mb-6 border border-teal-500/30">
+                        <span class="w-2 h-2 bg-teal-400 rounded-full mr-2 animate-pulse"></span>
+                        <span class="text-sm text-teal-300 font-medium">Trusted by 500+ businesses worldwide</span>
+                    </div>
+                    
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6">
+                        Delivering<br>
+                        <span class="animate-gradient-text">Speed Across</span><br>
+                        Borders
+                    </h1>
+                    
+                    <p class="text-lg text-slate-300 mb-8 max-w-lg">
+                        Smart logistics solutions designed for fast-moving global businesses.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#contact" class="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-teal-500 to-green-500 text-white font-semibold rounded-xl hover:shadow-xl hover:shadow-teal-500/40 hover:scale-105 transition-all transform animate-glow">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                            </svg>
+                            Get Instant Quote
+                        </a>
+                        <!-- <a href="#tracking" class="inline-flex items-center justify-center px-8 py-4 glass-btn text-white font-semibold rounded-xl hover:scale-105 transition-all">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                            </svg>
+                            Track Shipment
+                        </a> -->
+                    </div>
+                </div>
+                
+                <!-- Right: Interactive 3D Scene -->
+                <div class="relative h-[400px] lg:h-[500px] hero-content scene-3d" style="animation-delay: 0.2s;" id="scene-3d">
+                    <div class="scene-3d-inner absolute inset-0 flex items-center justify-center" id="scene-inner">
+                        <!-- 3D Globe Container -->
+                        <div class="globe-container">
+                            <!-- Outer Ring -->
+                            <div class="geo-shape" style="top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                                <div class="geo-ring"></div>
+                            </div>
+                            <!-- Inner Ring -->
+                            <div class="geo-shape" style="top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                                <div class="geo-ring-2"></div>
+                            </div>
+                            
+                            <!-- Network Nodes -->
+                            <div class="node node-1"></div>
+                            <div class="node node-2"></div>
+                            <div class="node node-3"></div>
+                            <div class="node node-4"></div>
+                            <div class="node node-5"></div>
+                            <div class="node node-6"></div>
+                            
+                            <!-- Connection Lines -->
+                            <div class="connection line-1"></div>
+                            <div class="connection line-2"></div>
+                            <div class="connection line-3"></div>
+                            <div class="connection line-4"></div>
+                            <div class="connection line-5"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+            <div class="w-6 h-10 border-2 border-slate-600 rounded-full flex items-start justify-center p-2">
+                <div class="w-1.5 h-3 bg-teal-500 rounded-full"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Strip -->
+    <!-- <section class="py-10 bg-white border-y border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <p class="text-center text-sm text-slate-500 font-medium mb-8">Trusted by 500+ global businesses</p>
+            <div class="flex items-center justify-center gap-8 sm:gap-12 lg:gap-16 flex-wrap md:flex-nowrap opacity-60">
+                <div class="flex items-center gap-2 text-slate-400 font-semibold text-xl">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                    TechCorp
+                </div>
+                <div class="flex items-center gap-2 text-slate-400 font-semibold text-xl">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>
+                    GlobalShip
+                </div>
+                <div class="flex items-center gap-2 text-slate-400 font-semibold text-xl">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/></svg>
+                    FreshGoods
+                </div>
+                <div class="flex items-center gap-2 text-slate-400 font-semibold text-xl">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20z"/></svg>
+                    CargoPro
+                </div>
+                <div class="flex items-center gap-2 text-slate-400 font-semibold text-xl">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 7v10l10 5 10-5V7L12 2z"/></svg>
+                    FastFreight
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- Trusted By / Client Logos -->
+    <section class="py-16 bg-slate-900 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 animate-on-scroll">
+                <h2 class="text-2xl sm:text-3xl font-bold text-white mb-3">Trusted by Leading Businesses</h2>
+                <p class="text-slate-400">Proudly serving clients across industries worldwide.</p>
+            </div>
+            
+            <!-- Logo Slider -->
+            <div class="relative overflow-hidden">
+                <div class="flex gap-12 items-center" id="client-logos">
+                    <!-- Logos will be loaded dynamically -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Grid -->
+    <section id="services" class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 animate-on-scroll">
+                <span class="inline-block px-4 py-1 bg-teal-50 text-teal-700 text-sm font-semibold rounded-full mb-4">Our Services</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">Comprehensive Logistics Solutions</h2>
+                <p class="text-lg text-slate-600 max-w-2xl mx-auto">From air freight to ocean shipping, we provide end-to-end logistics services tailored to your business needs.</p>
+            </div>
+            
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Service Card 1 -->
+                <div class="service-card relative bg-white rounded-2xl p-8 shadow-lg animate-on-scroll">
+                    <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-teal-500 to-green-500 flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Air Freight</h3>
+                    <p class="text-slate-600">Express air cargo services with guaranteed delivery times across 190+ countries worldwide.</p>
+                </div>
+                
+                <!-- Service Card 2 -->
+                <div class="service-card relative bg-white rounded-2xl p-8 shadow-lg animate-on-scroll stagger-1">
+                    <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-teal-500 to-green-500 flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Ocean Shipping</h3>
+                    <p class="text-slate-600">Cost-effective sea freight solutions for large volume shipments with full container options.</p>
+                </div>
+                
+                <!-- Service Card 3 -->
+                <div class="service-card relative bg-white rounded-2xl p-8 shadow-lg animate-on-scroll stagger-2">
+                    <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-teal-500 to-green-500 flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Warehousing</h3>
+                    <p class="text-slate-600">Secure storage facilities with advanced inventory management and distribution services.</p>
+                </div>
+                
+                <!-- Service Card 4 -->
+                <div class="service-card relative bg-white rounded-2xl p-8 shadow-lg animate-on-scroll stagger-3">
+                    <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-teal-500 to-green-500 flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Customs Clearance</h3>
+                    <p class="text-slate-600">Professional customs brokerage ensuring smooth border crossings and compliance.</p>
+                </div>
+                
+                <!-- Service Card 5 -->
+                <div class="service-card relative bg-white rounded-2xl p-8 shadow-lg animate-on-scroll stagger-4">
+                    <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-teal-500 to-green-500 flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Express Delivery</h3>
+                    <p class="text-slate-600">Same-day and next-day delivery services for urgent shipments with real-time tracking.</p>
+                </div>
+                
+                <!-- Service Card 6 -->
+                <div class="service-card relative bg-white rounded-2xl p-8 shadow-lg animate-on-scroll stagger-5">
+                    <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-teal-500 to-green-500 flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Supply Chain</h3>
+                    <p class="text-slate-600">End-to-end supply chain management optimizing your logistics from source to delivery.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Left: Animated Visual -->
+                <div class="relative h-[400px] animate-on-scroll">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <!-- Gradient Blob -->
+                        <div class="w-64 h-64 sm:w-80 sm:h-80 bg-gradient-to-br from-teal-100 to-green-100 rounded-full blur-3xl animate-pulse-slow"></div>
+                        
+                        <!-- Map Placeholder -->
+                        <div class="relative w-full max-w-sm">
+                            <svg class="w-full h-auto" viewBox="0 0 400 300" fill="none">
+                                <!-- World Map Simplified -->
+                                <path d="M50 150 Q100 100 150 130 T250 120 T350 140" stroke="url(#mapGradient)" stroke-width="3" fill="none" class="animate-pulse"/>
+                                <path d="M80 180 Q130 150 180 170 T280 160 T350 180" stroke="url(#mapGradient)" stroke-width="2" fill="none" opacity="0.6"/>
+                                <path d="M60 120 Q120 80 180 100 T280 90 T340 110" stroke="url(#mapGradient)" stroke-width="2" fill="none" opacity="0.6"/>
+                                
+                                <!-- Animated Dots -->
+                                <circle cx="80" cy="150" r="8" fill="#0d9488" class="animate-pulse"/>
+                                <circle cx="200" cy="120" r="8" fill="#10b981" class="animate-pulse" style="animation-delay: 0.5s"/>
+                                <circle cx="320" cy="160" r="8" fill="#0d9488" class="animate-pulse" style="animation-delay: 1s"/>
+                                
+                                <!-- Connection Lines -->
+                                <line x1="80" y1="150" x2="200" y2="120" stroke="#0d9488" stroke-width="2" stroke-dasharray="5 5" opacity="0.5"/>
+                                <line x1="200" y1="120" x2="320" y2="160" stroke="#10b981" stroke-width="2" stroke-dasharray="5 5" opacity="0.5"/>
+                                
+                                <defs>
+                                    <linearGradient id="mapGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                        <stop offset="0%" stop-color="#0d9488"/>
+                                        <stop offset="100%" stop-color="#10b981"/>
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right: Features -->
+                <div class="animate-on-scroll stagger-2">
+                    <span class="inline-block px-4 py-1 bg-teal-50 text-teal-700 text-sm font-semibold rounded-full mb-4">Why Choose Us</span>
+                    <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 mb-6">Your Partner in Global Logistics</h2>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-teal-100 flex-shrink-0 flex items-center justify-center">
+                                <svg class="w-6 h-6 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8H12m-7-.93l9-9a2 2 0 012.828 0l9 9a2 2 0 01-2.828 2.828l-9 9m0 0l-5 5a2 2 0 01-2.828 0L2.93 15.07a2 2 0 010-2.828z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-slate-900 mb-1">Global Reach</h3>
+                                <p class="text-slate-600">190+ countries with local expertise in customs and regulations.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-green-100 flex-shrink-0 flex items-center justify-center">
+                                <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-slate-900 mb-1">Real-Time Tracking</h3>
+                                <p class="text-slate-600">Advanced GPS tracking system accessible from any device, 24/7.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-teal-100 flex-shrink-0 flex items-center justify-center">
+                                <svg class="w-6 h-6 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-slate-900 mb-1">Fast Delivery</h3>
+                                <p class="text-slate-600">98.5% on-time delivery rate with express options available.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-green-100 flex-shrink-0 flex items-center justify-center">
+                                <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-slate-900 mb-1">Cost Effective</h3>
+                                <p class="text-slate-600">Competitive pricing with no hidden fees or surprise charges.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-teal-100 flex-shrink-0 flex items-center justify-center">
+                                <svg class="w-6 h-6 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-slate-900 mb-1">24/7 Support</h3>
+                                <p class="text-slate-600">Dedicated account managers available around the clock for assistance.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Flow -->
+    <section class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 animate-on-scroll">
+                <span class="inline-block px-4 py-1 bg-teal-50 text-teal-700 text-sm font-semibold rounded-full mb-4">Our Process</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">Seamless Delivery Journey</h2>
+                <p class="text-lg text-slate-600 max-w-2xl mx-auto">From request to delivery, we ensure a smooth and transparent process at every step.</p>
+            </div>
+            
+            <!-- Desktop Timeline -->
+            <div class="hidden lg:block relative">
+                <div class="process-line"></div>
+                
+                <div class="grid grid-cols-5 gap-4">
+                    <!-- Step 1 -->
+                    <div class="text-center relative">
+                        <div class="w-16 h-16 mx-auto bg-white rounded-2xl shadow-lg flex items-center justify-center mb-4 transform hover:scale-110 transition-transform">
+                            <svg class="w-8 h-8 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-slate-900 mb-1">Request Quote</h3>
+                        <p class="text-sm text-slate-600">Get instant pricing</p>
+                    </div>
+                    
+                    <!-- Step 2 -->
+                    <div class="text-center relative">
+                        <div class="w-16 h-16 mx-auto bg-white rounded-2xl shadow-lg flex items-center justify-center mb-4 transform hover:scale-110 transition-transform">
+                            <svg class="w-8 h-8 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-slate-900 mb-1">Pickup</h3>
+                        <p class="text-sm text-slate-600">We collect your cargo</p>
+                    </div>
+                    
+                    <!-- Step 3 -->
+                    <div class="text-center relative">
+                        <div class="w-16 h-16 mx-auto bg-white rounded-2xl shadow-lg flex items-center justify-center mb-4 transform hover:scale-110 transition-transform">
+                            <svg class="w-8 h-8 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-slate-900 mb-1">Transit</h3>
+                        <p class="text-sm text-slate-600">In transit to destination</p>
+                    </div>
+                    
+                    <!-- Step 4 -->
+                    <div class="text-center relative">
+                        <div class="w-16 h-16 mx-auto bg-white rounded-2xl shadow-lg flex items-center justify-center mb-4 transform hover:scale-110 transition-transform">
+                            <svg class="w-8 h-8 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-slate-900 mb-1">Customs</h3>
+                        <p class="text-sm text-slate-600">Clearance processing</p>
+                    </div>
+                    
+                    <!-- Step 5 -->
+                    <div class="text-center relative">
+                        <div class="w-16 h-16 mx-auto bg-white rounded-2xl shadow-lg flex items-center justify-center mb-4 transform hover:scale-110 transition-transform">
+                            <svg class="w-8 h-8 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-slate-900 mb-1">Delivery</h3>
+                        <p class="text-sm text-slate-600">Safe delivery to door</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Mobile Timeline -->
+            <div class="lg:hidden space-y-8">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-xl bg-white shadow-lg flex items-center justify-center flex-shrink-0">
+                        <svg class="w-6 h-6 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-slate-900">Request Quote</h3>
+                        <p class="text-sm text-slate-600">Get instant pricing</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-xl bg-white shadow-lg flex items-center justify-center flex-shrink-0">
+                        <svg class="w-6 h-6 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-slate-900">Pickup</h3>
+                        <p class="text-sm text-slate-600">We collect your cargo</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-xl bg-white shadow-lg flex items-center justify-center flex-shrink-0">
+                        <svg class="w-6 h-6 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-slate-900">Transit</h3>
+                        <p class="text-sm text-slate-600">In transit to destination</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-xl bg-white shadow-lg flex items-center justify-center flex-shrink-0">
+                        <svg class="w-6 h-6 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-slate-900">Customs</h3>
+                        <p class="text-sm text-slate-600">Clearance processing</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-xl bg-white shadow-lg flex items-center justify-center flex-shrink-0">
+                        <svg class="w-6 h-6 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-slate-900">Delivery</h3>
+                        <p class="text-sm text-slate-600">Safe delivery to door</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tracking Section -->
+    <!-- <section id="tracking" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mx-auto">
+                <div class="text-center mb-12 animate-on-scroll">
+                    <span class="inline-block px-4 py-1 bg-teal-50 text-teal-700 text-sm font-semibold rounded-full mb-4">Track Your Shipment</span>
+                    <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">Real-Time Shipment Tracking</h2>
+                    <p class="text-lg text-slate-600">Enter your tracking number to get instant updates on your shipment.</p>
+                </div>
+                
+                <div class="bg-white rounded-2xl shadow-xl p-8 animate-on-scroll">
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <div class="flex-1 relative">
+                            <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                            </svg>
+                            <input type="text" id="tracking-input" placeholder="Enter tracking ID (e.g., SF-123456)" class="w-full pl-12 pr-4 py-4 border border-slate-200 rounded-xl focus:outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 transition-all">
+                        </div>
+                        <button id="track-btn" class="px-8 py-4 bg-gradient-to-r from-teal-500 to-green-500 text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-teal-500/30 transition-all transform hover:-translate-y-0.5 whitespace-nowrap">
+                            Track Now
+                        </button>
+                    </div> -->
+                    
+                    <!-- Tracking Result -->
+                    <div id="tracking-result" class="hidden mt-8 pt-8 border-t border-slate-100">
+                        <div class="flex items-center justify-between mb-6">
+                            <div>
+                                <p class="text-sm text-slate-500">Tracking ID</p>
+                                <p id="tracking-id" class="text-lg font-bold text-slate-900">SF-123456</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-sm text-slate-500">Status</p>
+                                <span class="inline-flex items-center px-3 py-1 bg-green-100 text-green-700 text-sm font-semibold rounded-full">
+                                    <span class="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
+                                    In Transit
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <div class="tracking-timeline relative">
+                            <div class="space-y-6">
+                                <div class="tracking-dot flex items-center gap-4">
+                                    <div class="pl-8">
+                                        <p class="text-sm text-slate-500">Apr 9, 2026 • 10:30 AM</p>
+                                        <p class="font-semibold text-slate-900">Package arrived at destination facility</p>
+                                        <p class="text-sm text-slate-600">New York, NY</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="tracking-dot flex items-center gap-4">
+                                    <div class="pl-8">
+                                        <p class="text-sm text-slate-500">Apr 8, 2026 • 6:15 PM</p>
+                                        <p class="font-semibold text-slate-900">In transit to destination</p>
+                                        <p class="text-sm text-slate-600">New York, NY</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="tracking-dot flex items-center gap-4">
+                                    <div class="pl-8">
+                                        <p class="text-sm text-slate-500">Apr 7, 2026 • 2:00 PM</p>
+                                        <p class="font-semibold text-slate-900">Cleared customs</p>
+                                        <p class="text-sm text-slate-600">JFK International Airport</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="tracking-dot flex items-center gap-4">
+                                    <div class="pl-8">
+                                        <p class="text-sm text-slate-500">Apr 6, 2026 • 9:00 AM</p>
+                                        <p class="font-semibold text-slate-900">Package picked up</p>
+                                        <p class="text-sm text-slate-600">Los Angeles, CA</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 animate-on-scroll">
+                <span class="inline-block px-4 py-1 bg-teal-50 text-teal-700 text-sm font-semibold rounded-full mb-4">Testimonials</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">What Our Clients Say</h2>
+            </div>
+            
+            <!-- Testimonial Slider -->
+            <div class="relative overflow-hidden">
+                <div id="testimonial-container" class="flex transition-transform duration-500 ease-out">
+                    <!-- Testimonial 1 -->
+                    <div class="testimonial-slide min-w-full px-4">
+                        <div class="bg-white rounded-2xl shadow-lg p-8 max-w-2xl mx-auto">
+                            <div class="flex items-center gap-1 mb-4">
+                                <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            </div>
+                            <p class="text-lg text-slate-700 mb-6">"Logistics International has completely transformed our logistics operations. Their real-time tracking and on-time deliveries have helped us scale our e-commerce business significantly."</p>
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-full bg-gradient-to-br from-teal-500 to-green-500 flex items-center justify-center text-white font-bold">JD</div>
+                                <div>
+                                    <p class="font-semibold text-slate-900">John Davis</p>
+                                    <p class="text-sm text-slate-500">CEO, TechStart Inc.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonial 2 -->
+                    <div class="testimonial-slide min-w-full px-4">
+                        <div class="bg-white rounded-2xl shadow-lg p-8 max-w-2xl mx-auto">
+                            <div class="flex items-center gap-1 mb-4">
+                                <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            </div>
+                            <p class="text-lg text-slate-700 mb-6">"The best logistics partner we've ever worked with. Their 24/7 support and transparent pricing have made our supply chain operations seamless."</p>
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white font-bold">SM</div>
+                                <div>
+                                    <p class="font-semibold text-slate-900">Sarah Mitchell</p>
+                                    <p class="text-sm text-slate-500">Operations Director, GlobalTrade Co.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonial 3 -->
+                    <div class="testimonial-slide min-w-full px-4">
+                        <div class="bg-white rounded-2xl shadow-lg p-8 max-w-2xl mx-auto">
+                            <div class="flex items-center gap-1 mb-4">
+                                <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            </div>
+                            <p class="text-lg text-slate-700 mb-6">"Outstanding service! Logistics International helped us reduce shipping costs by 30% while improving delivery times. Their expertise in customs clearance is unmatched."</p>
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center text-white font-bold">MK</div>
+                                <div>
+                                    <p class="font-semibold text-slate-900">Michael Kim</p>
+                                    <p class="text-sm text-slate-500">Founder, ExportPro LLC</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Slider Controls -->
+                <div class="flex items-center justify-center gap-4 mt-8">
+                    <button id="testimonial-prev" class="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center hover:bg-teal-50 hover:border-teal-500 transition-colors">
+                        <svg class="w-5 h-5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                        </svg>
+                    </button>
+                    <div class="flex items-center gap-2">
+                        <button class="testimonial-dot w-2 h-2 rounded-full bg-teal-500 transition-colors" data-index="0"></button>
+                        <button class="testimonial-dot w-2 h-2 rounded-full bg-slate-300 transition-colors" data-index="1"></button>
+                        <button class="testimonial-dot w-2 h-2 rounded-full bg-slate-300 transition-colors" data-index="2"></button>
+                    </div>
+                    <button id="testimonial-next" class="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center hover:bg-teal-50 hover:border-teal-500 transition-colors">
+                        <svg class="w-5 h-5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Block -->
+    <section class="py-20 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-teal-600 to-green-600"></div>
+        <div class="absolute inset-0">
+            <div class="absolute top-0 left-0 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="text-center animate-on-scroll">
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">Ready to Move Your Business Forward?</h2>
+                <p class="text-xl text-white/80 mb-10 max-w-2xl mx-auto">Join 500+ businesses that trust Logistics International for their global logistics needs. Get started today with a free quote.</p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#contact" class="inline-flex items-center justify-center px-8 py-4 bg-white text-teal-600 font-semibold rounded-xl hover:shadow-xl transition-all transform hover:-translate-y-1">
+                        Get a Quote
+                    </a>
+                    <a href="#contact" class="inline-flex items-center justify-center px-8 py-4 bg-white/10 text-white font-semibold rounded-xl border-2 border-white/30 hover:bg-white/20 transition-all">
+                        Contact Us
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gradient-to-b from-slate-50 to-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- Left Side - Contact Details -->
+                <div class="animate-on-scroll">
+                    <span class="inline-block px-4 py-1 bg-teal-50 text-teal-700 text-sm font-semibold rounded-full mb-4">Contact Us</span>
+                    <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">Get in Touch</h2>
+                    <p class="text-lg text-slate-600 mb-8">Have a shipment or inquiry? Our team is ready to assist you.</p>
+                    
+                    <div class="space-y-4">
+                        <!-- Address Card -->
+                        <div class="bg-white rounded-xl p-5 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 rounded-xl bg-teal-100 flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-6 h-6 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-slate-500 font-medium mb-1">📍 Address</p>
+                                    <p class="text-slate-800 font-medium">Logistics International</p>
+                                    <p class="text-slate-600 text-sm">Plot No-661, Techzone-7,<br>Greater Noida West – 203207, U.P., India</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Phone Card -->
+                        <div class="bg-white rounded-xl p-5 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 rounded-xl bg-green-100 flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-slate-500 font-medium mb-2">📞 Phone Numbers</p>
+                                    <a href="tel:+919870387200" class="block text-teal-600 font-semibold hover:text-teal-700 transition-colors">+91 9870387200</a>
+                                    <a href="tel:+911204007737" class="block text-slate-600 hover:text-teal-600 transition-colors">+91 120 400 7737</a>
+                                    <a href="tel:+918178843560" class="block text-slate-600 hover:text-teal-600 transition-colors">+91 8178843560</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Email Card -->
+                        <div class="bg-white rounded-xl p-5 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 rounded-xl bg-teal-100 flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-6 h-6 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-slate-500 font-medium mb-2">✉️ Emails</p>
+                                    <a href="mailto:info@sgffpl.com" class="block text-teal-600 font-medium hover:text-teal-700 transition-colors">info@sgffpl.com</a>
+                                    <a href="mailto:logisticsinternational25@gmail.com" class="block text-slate-600 hover:text-teal-600 transition-colors">logisticsinternational25@gmail.com</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Side - Contact Form -->
+                <div class="animate-on-scroll stagger-2">
+                    <div class="bg-white rounded-2xl shadow-xl p-8">
+                        <h3 class="text-2xl font-bold text-slate-900 mb-2">Request a Quote</h3>
+                        <p class="text-slate-600 mb-8">Fill out the form below and our team will get back to you within 24 hours.</p>
+                        
+                        <form id="contact-form">
+                            <div class="space-y-5">
+                                <div>
+                                    <label class="block text-sm font-medium text-slate-700 mb-2">Name *</label>
+                                    <input type="text" required class="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 transition-all" placeholder="Your full name">
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-medium text-slate-700 mb-2">Email *</label>
+                                    <input type="email" required class="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 transition-all" placeholder="your@email.com">
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-medium text-slate-700 mb-2">Phone *</label>
+                                    <input type="tel" required class="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 transition-all" placeholder="+91 00000 00000">
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-medium text-slate-700 mb-2">Message *</label>
+                                    <textarea rows="4" required class="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 transition-all" placeholder="Tell us about your logistics requirements..."></textarea>
+                                </div>
+                                
+                                <button type="submit" class="w-full px-8 py-4 bg-gradient-to-r from-teal-500 to-green-500 text-white font-semibold rounded-xl hover:shadow-xl hover:shadow-teal-500/30 transition-all transform hover:-translate-y-1">
+                                    Request a Quote
+                                </button>
+                                
+                                <p class="text-center text-sm text-slate-500">Our team will get back to you within 24 hours.</p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Premium Footer -->
+    <footer class="relative bg-slate-900 text-white overflow-hidden">
+        <!-- Animated Background -->
+        <div class="absolute inset-0 overflow-hidden pointer-events-none">
+            <div class="absolute -top-1/2 -left-1/2 w-full h-full bg-gradient-to-br from-teal-500/10 via-transparent to-green-500/10 rounded-full blur-3xl animate-pulse-slow"></div>
+            <div class="absolute -bottom-1/2 -right-1/2 w-full h-full bg-gradient-to-tl from-teal-500/5 via-transparent to-green-500/5 rounded-full blur-3xl animate-pulse-slow" style="animation-delay: 2s;"></div>
+            <div class="absolute inset-0 opacity-[0.03]" style="background-image: linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 50px 50px;"></div>
+        </div>
+        
+        <!-- Top Gradient Glow -->
+        <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-teal-500 to-transparent"></div>
+        
+        <!-- Main Footer Content -->
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+                <!-- Column 1: Brand -->
+                <div class="animate-on-scroll">
+                    <div class="mb-6 flex items-center gap-3">
+                        <img src="logo.png" alt="Logistics International" class="h-10 w-auto object-contain">
+                        <div class="flex items-baseline">
+                            <span class="text-lg font-bold tracking-wide text-teal-400">Logistics</span>
+                            <span class="text-lg font-bold tracking-wide text-green-400">International</span>
+                        </div>
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6">Logistics International delivers fast, reliable, and scalable shipping solutions across borders. From pickup to final delivery, we ensure transparency, real-time tracking, and dedicated support for every shipment you trust us with now.</p>
+                    <div class="flex items-center gap-3">
+                        <a href="https://linkedin.com" target="_blank" class="w-10 h-10 rounded-lg bg-slate-800/50 flex items-center justify-center border border-slate-700 hover:border-teal-500 hover:bg-gradient-to-r hover:from-teal-500 hover:to-green-500 transition-all duration-300 hover:scale-115 group">
+                            <svg class="w-5 h-5 text-slate-400 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.226.792 24 1.771 24h20.451C23.2 24 24 23.226 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                        </a>
+                        <a href="https://x.com" target="_blank" class="w-10 h-10 rounded-lg bg-slate-800/50 flex items-center justify-center border border-slate-700 hover:border-teal-500 hover:bg-gradient-to-r hover:from-teal-500 hover:to-green-500 transition-all duration-300 hover:scale-115 group">
+                            <svg class="w-5 h-5 text-slate-400 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                        </a>
+                        <a href="https://facebook.com" target="_blank" class="w-10 h-10 rounded-lg bg-slate-800/50 flex items-center justify-center border border-slate-700 hover:border-teal-500 hover:bg-gradient-to-r hover:from-teal-500 hover:to-green-500 transition-all duration-300 hover:scale-115 group">
+                            <svg class="w-5 h-5 text-slate-400 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.552c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Column 2: Quick Links -->
+                <div class="animate-on-scroll stagger-1">
+                    <h3 class="font-bold text-lg mb-6 text-white">Quick Links</h3>
+                    <ul class="space-y-4">
+                        <li><a href="#home" class="group relative inline-block text-slate-400 hover:text-teal-400 transition-colors duration-300">
+                            <span>Home</span>
+                            <span class="absolute bottom-0 left-0 w-0 h-px bg-gradient-to-r from-teal-500 to-green-500 group-hover:w-full transition-all duration-300"></span>
+                        </a></li>
+                        <li><a href="#services" class="group relative inline-block text-slate-400 hover:text-teal-400 transition-colors duration-300">
+                            <span>Services</span>
+                            <span class="absolute bottom-0 left-0 w-0 h-px bg-gradient-to-r from-teal-500 to-green-500 group-hover:w-full transition-all duration-300"></span>
+                        </a></li>
+                        <!-- <li><a href="#tracking" class="group relative inline-block text-slate-400 hover:text-teal-400 transition-colors duration-300">
+                            <span>Tracking</span>
+                            <span class="absolute bottom-0 left-0 w-0 h-px bg-gradient-to-r from-teal-500 to-green-500 group-hover:w-full transition-all duration-300"></span>
+                        </a></li> -->
+                        <li><a href="#contact" class="group relative inline-block text-slate-400 hover:text-teal-400 transition-colors duration-300">
+                            <span>Contact</span>
+                            <span class="absolute bottom-0 left-0 w-0 h-px bg-gradient-to-r from-teal-500 to-green-500 group-hover:w-full transition-all duration-300"></span>
+                        </a></li>
+                    </ul>
+                </div>
+                
+                <!-- Column 3: Contact Info -->
+                <div class="animate-on-scroll stagger-2">
+                    <h3 class="font-bold text-lg mb-6 text-white">Contact Info</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3 group">
+                            <div class="w-10 h-10 rounded-lg bg-slate-800/50 flex items-center justify-center border border-slate-700 group-hover:border-teal-500 group-hover:shadow-lg group-hover:shadow-teal-500/20 transition-all duration-300 flex-shrink-0">
+                                <svg class="w-5 h-5 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                </svg>
+                            </div>
+                            <div class="text-slate-400 text-sm">
+                                <!-- <p class="text-white font-medium mb-1">Address</p> -->
+                                <p>Plot No-661, Techzone-7,<br>Greater Noida West – 203207, U.P., India</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3 group">
+                            <div class="w-10 h-10 rounded-lg bg-slate-800/50 flex items-center justify-center border border-slate-700 group-hover:border-teal-500 group-hover:shadow-lg group-hover:shadow-teal-500/20 transition-all duration-300 flex-shrink-0">
+                                <svg class="w-5 h-5 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                                </svg>
+                            </div>
+                            <div class="flex flex-col">
+                                <a href="tel:+919870387200" class="text-teal-400 hover:text-teal-300 text-sm transition-colors">+91 9870387200</a>
+                                <a href="tel:+911204007737" class="text-slate-400 hover:text-teal-400 text-sm transition-colors">+91 120 400 7737</a>
+                                <a href="tel:+918178843560" class="text-slate-400 hover:text-teal-400 text-sm transition-colors">+91 8178843560</a>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3 group">
+                            <div class="w-10 h-10 rounded-lg bg-slate-800/50 flex items-center justify-center border border-slate-700 group-hover:border-teal-500 group-hover:shadow-lg group-hover:shadow-teal-500/20 transition-all duration-300 flex-shrink-0">
+                                <svg class="w-5 h-5 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                                </svg>
+                            </div>
+                            <div class="flex flex-col">
+                                <a href="mailto:info@sgffpl.com" class="text-teal-400 hover:text-teal-300 text-sm transition-colors">info@sgffpl.com</a>
+                                <a href="mailto:logisticsinternational25@gmail.com" class="text-slate-400 hover:text-teal-400 text-sm transition-colors">logisticsinternational25@gmail.com</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Column 4: CTA -->
+                <div class="animate-on-scroll stagger-3">
+                    <h3 class="font-bold text-lg mb-6 text-white">Get Started</h3>
+                    <p class="text-slate-400 text-sm mb-6">Ready to move your shipments faster and smarter? Request a quote, track your delivery, or connect with our team to find the right logistics solution for your business.</p>
+                    <a href="#contact" class="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-teal-500 to-green-500 text-white font-semibold rounded-xl hover:shadow-xl hover:shadow-teal-500/30 transition-all transform hover:-translate-y-1 hover:scale-105 animate-glow">
+                        Get a Quote
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Divider -->
+            <div class="pt-8 border-t border-slate-800">
+                <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <p class="text-slate-500 text-sm">&copy; 2026 Logistics International. All rights reserved.</p>
+                    <div class="flex items-center gap-6">
+                        <!-- <a href="#" class="text-slate-500 hover:text-teal-400 text-sm transition-colors">Privacy Policy</a>
+                        <a href="#" class="text-slate-500 hover:text-teal-400 text-sm transition-colors">Terms of Service</a> -->
+                        <a href="https://sitelytc.com/" class="text-slate-500 hover:text-teal-400 text-sm transition-colors">Designed with ❤️ by Sitelytc</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Glass Effect Strip -->
+        <div class="absolute bottom-20 left-0 right-0 h-px bg-gradient-to-r from-transparent via-teal-500/30 to-transparent"></div>
+    </footer>
+
+    <!-- Mobile Sticky CTA -->
+    <!-- <div class="md:hidden fixed bottom-0 left-0 right-0 bg-slate-900/95 backdrop-blur-lg border-t border-slate-800 p-4 z-40">
+        <a href="#contact" class="flex items-center justify-center w-full py-3 bg-gradient-to-r from-teal-500 to-green-500 text-white font-semibold rounded-xl shadow-lg shadow-teal-500/20">
+            Get Quote
+        </a>
+    </div> -->
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/919811389269" target="_blank" class="fixed bottom-6 right-6 w-14 h-14 bg-green-500 rounded-full flex items-center justify-center shadow-lg shadow-green-500/40 hover:bg-green-600 transition-all transform hover:scale-110 z-50">
+        <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+    </a>
+
+    <!-- JavaScript -->
+    <script>
+        // Wait for DOM to load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Loading Screen
+            setTimeout(function() {
+                document.getElementById('loading-screen').style.opacity = '0';
+                setTimeout(function() {
+                    document.getElementById('loading-screen').style.display = 'none';
+                }, 500);
+            }, 1500);
+
+            // Cursor Glow Effect
+            const cursorGlow = document.getElementById('cursor-glow');
+            document.addEventListener('mousemove', function(e) {
+                cursorGlow.style.left = e.clientX - 150 + 'px';
+                cursorGlow.style.top = e.clientY - 150 + 'px';
+            });
+
+            // Navbar Scroll Effect
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+
+            // Mobile Menu Toggle
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuBtn.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // 3D Scene Mouse Interaction
+            const heroSection = document.getElementById('hero-section');
+            const sceneInner = document.getElementById('scene-inner');
+            if (sceneInner) {
+                heroSection.addEventListener('mousemove', function(e) {
+                    const rect = heroSection.getBoundingClientRect();
+                    const x = (e.clientX - rect.left) / rect.width - 0.5;
+                    const y = (e.clientY - rect.top) / rect.height - 0.5;
+                    
+                    const rotateX = y * 15;
+                    const rotateY = x * 15;
+                    
+                    sceneInner.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                });
+                
+                heroSection.addEventListener('mouseleave', function() {
+                    sceneInner.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+                });
+            }
+
+            // Intersection Observer for Animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.animate-on-scroll').forEach(function(el) {
+                observer.observe(el);
+            });
+
+            // Testimonial Slider
+            const testimonialContainer = document.getElementById('testimonial-container');
+            const testimonialSlides = document.querySelectorAll('.testimonial-slide');
+            const testimonialDots = document.querySelectorAll('.testimonial-dot');
+            const testimonialPrev = document.getElementById('testimonial-prev');
+            const testimonialNext = document.getElementById('testimonial-next');
+            let currentSlide = 0;
+            let testimonialInterval;
+
+            function goToSlide(index) {
+                currentSlide = index;
+                if (currentSlide < 0) currentSlide = testimonialSlides.length - 1;
+                if (currentSlide >= testimonialSlides.length) currentSlide = 0;
+                
+                testimonialContainer.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
+                
+                testimonialDots.forEach(function(dot, i) {
+                    dot.classList.toggle('bg-teal-500', i === currentSlide);
+                    dot.classList.toggle('bg-slate-300', i !== currentSlide);
+                });
+            }
+
+            function nextSlide() {
+                goToSlide(currentSlide + 1);
+            }
+
+            function prevSlide() {
+                goToSlide(currentSlide - 1);
+            }
+
+            function startAutoSlide() {
+                testimonialInterval = setInterval(nextSlide, 5000);
+            }
+
+            function stopAutoSlide() {
+                clearInterval(testimonialInterval);
+            }
+
+            testimonialNext.addEventListener('click', function() {
+                stopAutoSlide();
+                nextSlide();
+                startAutoSlide();
+            });
+
+            testimonialPrev.addEventListener('click', function() {
+                stopAutoSlide();
+                prevSlide();
+                startAutoSlide();
+            });
+
+            testimonialDots.forEach(function(dot) {
+                dot.addEventListener('click', function() {
+                    stopAutoSlide();
+                    var index = parseInt(this.getAttribute('data-index'));
+                    goToSlide(index);
+                    startAutoSlide();
+                });
+            });
+
+            startAutoSlide();
+
+            // Tracking Functionality
+            const trackBtn = document.getElementById('track-btn');
+            const trackingInput = document.getElementById('tracking-input');
+            const trackingResult = document.getElementById('tracking-result');
+            const trackingId = document.getElementById('tracking-id');
+
+            trackBtn.addEventListener('click', function() {
+                const id = trackingInput.value.trim();
+                if (id) {
+                    trackingId.textContent = id;
+                    trackingResult.classList.remove('hidden');
+                    
+                    // Scroll to result
+                    trackingResult.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                } else {
+                    alert('Please enter a tracking ID');
+                }
+            });
+
+            // Contact Form
+            const contactForm = document.getElementById('contact-form');
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Show success message
+                const btn = contactForm.querySelector('button[type="submit"]');
+                const originalText = btn.textContent;
+                btn.textContent = 'Message Sent!';
+                btn.classList.add('bg-green-500');
+                btn.classList.remove('from-teal-500', 'to-green-500');
+                
+                setTimeout(function() {
+                    btn.textContent = originalText;
+                    btn.classList.remove('bg-green-500');
+                    btn.classList.add('from-teal-500', 'to-green-500');
+                    contactForm.reset();
+                }, 3000);
+            });
+
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                        
+                        // Close mobile menu if open
+                        mobileMenu.classList.add('hidden');
+                    }
+                });
+            });
+
+            // Add staggered animations to service cards on load
+            setTimeout(function() {
+                document.querySelectorAll('.service-card').forEach(function(card, index) {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(30px)';
+                    
+                    setTimeout(function() {
+                        card.style.transition = 'all 0.6s ease-out';
+                        card.style.transitionDelay = (index * 0.1) + 's';
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, 100 * index);
+                });
+            }, 500);
+        });
+    </script>
+    
+    <!-- Particle Canvas for Hero -->
+    <canvas id="particle-canvas" class="absolute inset-0 pointer-events-none"></canvas>
+    
+    <script src="script.js"></script>
+</body>
+</html>
