@@ -514,9 +514,9 @@ body {
 
 .truck-logo-overlay {
     position: absolute;
-    bottom: 25%;
-    right: 15%;
-    transform: translateX(10%);
+    bottom: 30%;
+    left: 35%;
+    transform: translateX(-50%);
     animation: truckFloat 6s ease-in-out infinite;
 }
 
