@@ -212,27 +212,31 @@ function initNavbar() {
 }
 
 // ==========================================
-// 3D SCENE INTERACTION
+// 3D SCENE INTERACTION (Hero Truck Section)
 // ==========================================
 function init3DScene() {
-    const heroSection = document.getElementById('hero-section');
-    const sceneInner = document.getElementById('scene-inner');
+    // The hero section now uses a static truck image instead of 3D scene
+    // This function kept for potential future 3D elements
+    const truckContainer = document.querySelector('.truck-container');
+    if (!truckContainer) return;
     
-    if (!heroSection || !sceneInner) return;
-    
-    heroSection.addEventListener('mousemove', function(e) {
-        const rect = heroSection.getBoundingClientRect();
+    // Add subtle parallax effect to truck on mouse move
+    truckContainer.addEventListener('mousemove', function(e) {
+        const rect = truckContainer.getBoundingClientRect();
         const x = (e.clientX - rect.left) / rect.width - 0.5;
         const y = (e.clientY - rect.top) / rect.height - 0.5;
         
-        const rotateX = y * 15;
-        const rotateY = x * 15;
-        
-        sceneInner.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        const truckWrapper = truckContainer.querySelector('.truck-wrapper');
+        if (truckWrapper) {
+            truckWrapper.style.transform = `perspective(1000px) rotateY(${x * 5}deg) rotateX(${-y * 5}deg)`;
+        }
     });
     
-    heroSection.addEventListener('mouseleave', function() {
-        sceneInner.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+    truckContainer.addEventListener('mouseleave', function() {
+        const truckWrapper = truckContainer.querySelector('.truck-wrapper');
+        if (truckWrapper) {
+            truckWrapper.style.transform = '';
+        }
     });
 }
 

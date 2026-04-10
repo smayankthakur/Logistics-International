@@ -148,35 +148,19 @@
                     </div>
                 </div>
                 
-                <!-- Right: Interactive 3D Scene -->
-                <div class="relative h-[400px] lg:h-[500px] hero-content scene-3d" style="animation-delay: 0.2s;" id="scene-3d">
-                    <div class="scene-3d-inner absolute inset-0 flex items-center justify-center" id="scene-inner">
-                        <!-- 3D Globe Container -->
-                        <div class="globe-container">
-                            <!-- Outer Ring -->
-                            <div class="geo-shape" style="top: 50%; left: 50%; transform: translate(-50%, -50%);">
-                                <div class="geo-ring"></div>
+                <!-- Right: Truck Image with Logo Branding -->
+                <div class="relative h-[400px] lg:h-[500px] hero-content truck-container" style="animation-delay: 0.2s;">
+                    <div class="truck-wrapper">
+                        <!-- Truck Image Container -->
+                        <div class="truck-image-wrapper">
+                            <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&q=80" alt="Logistics Truck" class="truck-image">
+                            <!-- Logo Overlay on Truck -->
+                            <div class="truck-logo-overlay">
+                                <img src="logo.png" alt="Logistics International" class="truck-logo">
                             </div>
-                            <!-- Inner Ring -->
-                            <div class="geo-shape" style="top: 50%; left: 50%; transform: translate(-50%, -50%);">
-                                <div class="geo-ring-2"></div>
-                            </div>
-                            
-                            <!-- Network Nodes -->
-                            <div class="node node-1"></div>
-                            <div class="node node-2"></div>
-                            <div class="node node-3"></div>
-                            <div class="node node-4"></div>
-                            <div class="node node-5"></div>
-                            <div class="node node-6"></div>
-                            
-                            <!-- Connection Lines -->
-                            <div class="connection line-1"></div>
-                            <div class="connection line-2"></div>
-                            <div class="connection line-3"></div>
-                            <div class="connection line-4"></div>
-                            <div class="connection line-5"></div>
                         </div>
+                        <!-- Shadow Below Truck -->
+                        <div class="truck-shadow"></div>
                     </div>
                 </div>
             </div>
@@ -187,50 +171,64 @@
             <div class="w-6 h-10 border-2 border-slate-600 rounded-full flex items-start justify-center p-2">
                 <div class="w-1.5 h-3 bg-[#22a564] rounded-full"></div>
             </div>
-        </div>
+</div>
     </section>
 
-    <!-- Trust Strip -->
-    <!-- <section class="py-10 bg-white border-y border-slate-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <p class="text-center text-sm text-slate-500 font-medium mb-8">Trusted by 500+ global businesses</p>
-            <div class="flex items-center justify-center gap-8 sm:gap-12 lg:gap-16 flex-wrap md:flex-nowrap opacity-60">
-                <div class="flex items-center gap-2 text-slate-400 font-semibold text-xl">
-                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-                    TechCorp
-                </div>
-                <div class="flex items-center gap-2 text-slate-400 font-semibold text-xl">
-                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>
-                    GlobalShip
-                </div>
-                <div class="flex items-center gap-2 text-slate-400 font-semibold text-xl">
-                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/></svg>
-                    FreshGoods
-                </div>
-                <div class="flex items-center gap-2 text-slate-400 font-semibold text-xl">
-                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20z"/></svg>
-                    CargoPro
-                </div>
-                <div class="flex items-center gap-2 text-slate-400 font-semibold text-xl">
-                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 7v10l10 5 10-5V7L12 2z"/></svg>
-                    FastFreight
-                </div>
-            </div>
-        </div>
-    </section> -->
-
-    <!-- Trusted By / Client Logos -->
+    <!-- Our Partners Section -->
     <section class="py-16 bg-slate-900 border-t border-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12 animate-on-scroll">
-                <h2 class="text-2xl sm:text-3xl font-bold text-white mb-3">Trusted by Leading Businesses</h2>
-                <p class="text-slate-400">Proudly serving clients across industries worldwide.</p>
+                <span class="inline-block px-4 py-1 bg-[#22a564]/20 text-[#22a564] text-sm font-semibold rounded-full mb-4">Our Partners</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">Our Trusted Partners</h2>
+                <p class="text-lg text-slate-400 max-w-2xl mx-auto">We collaborate with industry leaders to deliver seamless logistics solutions worldwide.</p>
             </div>
             
-            <!-- Logo Slider -->
-            <div class="relative overflow-hidden">
-                <div class="flex gap-12 items-center" id="client-logos">
-                    <!-- Logos will be loaded dynamically -->
+            <!-- Partners Marquee -->
+            <div class="partners-marquee">
+                <div class="partners-track">
+                    <div class="partner-logo">
+                        <img src="partner/indianrailway.jpg" alt="Indian Railway" loading="lazy">
+                    </div>
+                    <div class="partner-logo">
+                        <img src="partner/vistara.jpg" alt="Vistara" loading="lazy">
+                    </div>
+                    <div class="partner-logo">
+                        <img src="partner/spicejet.jpg" alt="SpiceJet" loading="lazy">
+                    </div>
+                    <div class="partner-logo">
+                        <img src="partner/indigo.jpg" alt="IndiGo" loading="lazy">
+                    </div>
+                    <div class="partner-logo">
+                        <img src="partner/bluedart.jpg" alt="BlueDart" loading="lazy">
+                    </div>
+                    <div class="partner-logo">
+                        <img src="partner/airindia.jpg" alt="Air India" loading="lazy">
+                    </div>
+                    <div class="partner-logo">
+                        <img src="partner/airasia.jpg" alt="AirAsia" loading="lazy">
+                    </div>
+                    <!-- Duplicate for seamless loop -->
+                    <div class="partner-logo">
+                        <img src="partner/indianrailway.jpg" alt="Indian Railway" loading="lazy">
+                    </div>
+                    <div class="partner-logo">
+                        <img src="partner/vistara.jpg" alt="Vistara" loading="lazy">
+                    </div>
+                    <div class="partner-logo">
+                        <img src="partner/spicejet.jpg" alt="SpiceJet" loading="lazy">
+                    </div>
+                    <div class="partner-logo">
+                        <img src="partner/indigo.jpg" alt="IndiGo" loading="lazy">
+                    </div>
+                    <div class="partner-logo">
+                        <img src="partner/bluedart.jpg" alt="BlueDart" loading="lazy">
+                    </div>
+                    <div class="partner-logo">
+                        <img src="partner/airindia.jpg" alt="Air India" loading="lazy">
+                    </div>
+                    <div class="partner-logo">
+                        <img src="partner/airasia.jpg" alt="AirAsia" loading="lazy">
+                    </div>
                 </div>
             </div>
         </div>
@@ -246,72 +244,100 @@
             </div>
             
             <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Service Card 1 -->
-                <div class="service-card relative bg-white rounded-2xl p-8 shadow-lg animate-on-scroll">
-                    <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-[#22a564] to-[#22a564] flex items-center justify-center mb-6">
-                        <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
-                        </svg>
+                <!-- Service Card 1 - Air Freight -->
+                <div class="service-card relative bg-white rounded-2xl p-6 shadow-lg animate-on-scroll">
+                    <div class="service-image-container">
+                        <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=400&q=80" alt="Air Freight - Airplane" class="service-image">
                     </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-3">Air Freight</h3>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3 mt-4">Air Freight</h3>
                     <p class="text-slate-600">Express air cargo services with guaranteed delivery times across 190+ countries worldwide.</p>
                 </div>
                 
-                <!-- Service Card 2 -->
-                <div class="service-card relative bg-white rounded-2xl p-8 shadow-lg animate-on-scroll stagger-1">
-                    <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-[#22a564] to-[#22a564] flex items-center justify-center mb-6">
-                        <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/>
-                        </svg>
+                <!-- Service Card 2 - Ocean Shipping -->
+                <div class="service-card relative bg-white rounded-2xl p-6 shadow-lg animate-on-scroll stagger-1">
+                    <div class="service-image-container">
+                        <img src="https://images.unsplash.com/photo-1494412651409-8963ce7935a7?w=400&q=80" alt="Ocean Shipping - Cargo Containers" class="service-image">
                     </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-3">Ocean Shipping</h3>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3 mt-4">Ocean Shipping</h3>
                     <p class="text-slate-600">Cost-effective sea freight solutions for large volume shipments with full container options.</p>
                 </div>
                 
-                <!-- Service Card 3 -->
-                <div class="service-card relative bg-white rounded-2xl p-8 shadow-lg animate-on-scroll stagger-2">
-                    <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-[#22a564] to-[#22a564] flex items-center justify-center mb-6">
-                        <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"/>
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0"/>
-                        </svg>
+                <!-- Service Card 3 - Warehousing -->
+                <div class="service-card relative bg-white rounded-2xl p-6 shadow-lg animate-on-scroll stagger-2">
+                    <div class="service-image-container">
+                        <img src="https://images.unsplash.com/photo-1553413077-190dd305871c?w=400&q=80" alt="Warehousing - Storage Racks" class="service-image">
                     </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-3">Warehousing</h3>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3 mt-4">Warehousing</h3>
                     <p class="text-slate-600">Secure storage facilities with advanced inventory management and distribution services.</p>
                 </div>
                 
-                <!-- Service Card 4 -->
-                <div class="service-card relative bg-white rounded-2xl p-8 shadow-lg animate-on-scroll stagger-3">
-                    <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-[#22a564] to-[#22a564] flex items-center justify-center mb-6">
-                        <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
-                        </svg>
+                <!-- Service Card 4 - Customs Clearance -->
+                <div class="service-card relative bg-white rounded-2xl p-6 shadow-lg animate-on-scroll stagger-3">
+                    <div class="service-image-container">
+                        <img src="https://images.unsplash.com/photo-1566576912321-d58ddd371ef4?w=400&q=80" alt="Customs Clearance - Port" class="service-image">
                     </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-3">Customs Clearance</h3>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3 mt-4">Customs Clearance</h3>
                     <p class="text-slate-600">Professional customs brokerage ensuring smooth border crossings and compliance.</p>
                 </div>
                 
-                <!-- Service Card 5 -->
-                <div class="service-card relative bg-white rounded-2xl p-8 shadow-lg animate-on-scroll stagger-4">
-                    <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-[#22a564] to-[#22a564] flex items-center justify-center mb-6">
-                        <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-                        </svg>
+                <!-- Service Card 5 - Express Delivery -->
+                <div class="service-card relative bg-white rounded-2xl p-6 shadow-lg animate-on-scroll stagger-4">
+                    <div class="service-image-container">
+                        <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&q=80" alt="Express Delivery - Courier" class="service-image">
                     </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-3">Express Delivery</h3>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3 mt-4">Express Delivery</h3>
                     <p class="text-slate-600">Same-day and next-day delivery services for urgent shipments with real-time tracking.</p>
                 </div>
                 
-                <!-- Service Card 6 -->
-                <div class="service-card relative bg-white rounded-2xl p-8 shadow-lg animate-on-scroll stagger-5">
-                    <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-[#22a564] to-[#22a564] flex items-center justify-center mb-6">
-                        <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"/>
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1"/>
-                        </svg>
+                <!-- Service Card 6 - Supply Chain -->
+                <div class="service-card relative bg-white rounded-2xl p-6 shadow-lg animate-on-scroll stagger-5">
+                    <div class="service-image-container">
+                        <img src="https://images.unsplash.com/photo-1578575437130-527eed3c0bce?w=400&q=80" alt="Supply Chain - Logistics" class="service-image">
                     </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-3">Supply Chain</h3>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3 mt-4">Supply Chain</h3>
                     <p class="text-slate-600">End-to-end supply chain management optimizing your logistics from source to delivery.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Clients Section -->
+    <section id="clients" class="py-20 bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 animate-on-scroll">
+                <span class="inline-block px-4 py-1 bg-[#22a564]/20 text-[#22a564] text-sm font-semibold rounded-full mb-4">Our Clients</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">Trusted by Leading Businesses</h2>
+                <p class="text-lg text-slate-400 max-w-2xl mx-auto">Trusted by leading businesses across industries</p>
+            </div>
+            
+            <!-- Glassmorphism Logo Grid -->
+            <div class="clients-grid">
+                <div class="client-logo-card">
+                    <img src="client/google.jpg" alt="Google" loading="lazy">
+                </div>
+                <div class="client-logo-card">
+                    <img src="client/ibm.jpg" alt="IBM" loading="lazy">
+                </div>
+                <div class="client-logo-card">
+                    <img src="client/honda.jpg" alt="Honda" loading="lazy">
+                </div>
+                <div class="client-logo-card">
+                    <img src="client/toyota.jpg" alt="Toyota" loading="lazy">
+                </div>
+                <div class="client-logo-card">
+                    <img src="client/nike.jpg" alt="Nike" loading="lazy">
+                </div>
+                <div class="client-logo-card">
+                    <img src="client/puma.jpg" alt="Puma" loading="lazy">
+                </div>
+                <div class="client-logo-card">
+                    <img src="client/nokia.jpg" alt="Nokia" loading="lazy">
+                </div>
+                <div class="client-logo-card">
+                    <img src="client/mobil.jpg" alt="Mobil" loading="lazy">
+                </div>
+                <div class="client-logo-card">
+                    <img src="client/Attero.jpg" alt="Attero" loading="lazy">
                 </div>
             </div>
         </div>
@@ -1015,213 +1041,6 @@
     </a>
 
     <!-- JavaScript -->
-    <script>
-        // Wait for DOM to load
-        document.addEventListener('DOMContentLoaded', function() {
-            // Loading Screen
-            setTimeout(function() {
-                document.getElementById('loading-screen').style.opacity = '0';
-                setTimeout(function() {
-                    document.getElementById('loading-screen').style.display = 'none';
-                }, 500);
-            }, 1500);
-
-            // Cursor Glow Effect
-            const cursorGlow = document.getElementById('cursor-glow');
-            document.addEventListener('mousemove', function(e) {
-                cursorGlow.style.left = e.clientX - 150 + 'px';
-                cursorGlow.style.top = e.clientY - 150 + 'px';
-            });
-
-            // Navbar Scroll Effect
-            const navbar = document.getElementById('navbar');
-            window.addEventListener('scroll', function() {
-                if (window.scrollY > 50) {
-                    navbar.classList.add('scrolled');
-                } else {
-                    navbar.classList.remove('scrolled');
-                }
-            });
-
-            // Mobile Menu Toggle
-            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-            const mobileMenu = document.getElementById('mobile-menu');
-            mobileMenuBtn.addEventListener('click', function() {
-                mobileMenu.classList.toggle('hidden');
-            });
-
-            // 3D Scene Mouse Interaction
-            const heroSection = document.getElementById('hero-section');
-            const sceneInner = document.getElementById('scene-inner');
-            if (sceneInner) {
-                heroSection.addEventListener('mousemove', function(e) {
-                    const rect = heroSection.getBoundingClientRect();
-                    const x = (e.clientX - rect.left) / rect.width - 0.5;
-                    const y = (e.clientY - rect.top) / rect.height - 0.5;
-                    
-                    const rotateX = y * 15;
-                    const rotateY = x * 15;
-                    
-                    sceneInner.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-                });
-                
-                heroSection.addEventListener('mouseleave', function() {
-                    sceneInner.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
-                });
-            }
-
-            // Intersection Observer for Animations
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-
-            const observer = new IntersectionObserver(function(entries) {
-                entries.forEach(function(entry) {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, observerOptions);
-
-            document.querySelectorAll('.animate-on-scroll').forEach(function(el) {
-                observer.observe(el);
-            });
-
-            // Testimonial Slider
-            const testimonialContainer = document.getElementById('testimonial-container');
-            const testimonialSlides = document.querySelectorAll('.testimonial-slide');
-            const testimonialDots = document.querySelectorAll('.testimonial-dot');
-            const testimonialPrev = document.getElementById('testimonial-prev');
-            const testimonialNext = document.getElementById('testimonial-next');
-            let currentSlide = 0;
-            let testimonialInterval;
-
-            function goToSlide(index) {
-                currentSlide = index;
-                if (currentSlide < 0) currentSlide = testimonialSlides.length - 1;
-                if (currentSlide >= testimonialSlides.length) currentSlide = 0;
-                
-                testimonialContainer.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
-                
-                testimonialDots.forEach(function(dot, i) {
-                    dot.classList.toggle('bg-[#22a564]', i === currentSlide);
-                    dot.classList.toggle('bg-slate-300', i !== currentSlide);
-                });
-            }
-
-            function nextSlide() {
-                goToSlide(currentSlide + 1);
-            }
-
-            function prevSlide() {
-                goToSlide(currentSlide - 1);
-            }
-
-            function startAutoSlide() {
-                testimonialInterval = setInterval(nextSlide, 5000);
-            }
-
-            function stopAutoSlide() {
-                clearInterval(testimonialInterval);
-            }
-
-            testimonialNext.addEventListener('click', function() {
-                stopAutoSlide();
-                nextSlide();
-                startAutoSlide();
-            });
-
-            testimonialPrev.addEventListener('click', function() {
-                stopAutoSlide();
-                prevSlide();
-                startAutoSlide();
-            });
-
-            testimonialDots.forEach(function(dot) {
-                dot.addEventListener('click', function() {
-                    stopAutoSlide();
-                    var index = parseInt(this.getAttribute('data-index'));
-                    goToSlide(index);
-                    startAutoSlide();
-                });
-            });
-
-            startAutoSlide();
-
-            // Tracking Functionality
-            const trackBtn = document.getElementById('track-btn');
-            const trackingInput = document.getElementById('tracking-input');
-            const trackingResult = document.getElementById('tracking-result');
-            const trackingId = document.getElementById('tracking-id');
-
-            trackBtn.addEventListener('click', function() {
-                const id = trackingInput.value.trim();
-                if (id) {
-                    trackingId.textContent = id;
-                    trackingResult.classList.remove('hidden');
-                    
-                    // Scroll to result
-                    trackingResult.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                } else {
-                    alert('Please enter a tracking ID');
-                }
-            });
-
-            // Contact Form
-            const contactForm = document.getElementById('contact-form');
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                // Show success message
-                const btn = contactForm.querySelector('button[type="submit"]');
-                const originalText = btn.textContent;
-                btn.textContent = 'Message Sent!';
-                btn.classList.add('bg-green-500');
-                btn.classList.remove('from-[#22a564]', 'to-[#22a564]');
-                
-                setTimeout(function() {
-                    btn.textContent = originalText;
-                    btn.classList.remove('bg-green-500');
-                    btn.classList.add('from-[#22a564]', 'to-[#22a564]');
-                    contactForm.reset();
-                }, 3000);
-            });
-
-            // Smooth scroll for anchor links
-            document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({ behavior: 'smooth' });
-                        
-                        // Close mobile menu if open
-                        mobileMenu.classList.add('hidden');
-                    }
-                });
-            });
-
-            // Add staggered animations to service cards on load
-            setTimeout(function() {
-                document.querySelectorAll('.service-card').forEach(function(card, index) {
-                    card.style.opacity = '0';
-                    card.style.transform = 'translateY(30px)';
-                    
-                    setTimeout(function() {
-                        card.style.transition = 'all 0.6s ease-out';
-                        card.style.transitionDelay = (index * 0.1) + 's';
-                        card.style.opacity = '1';
-                        card.style.transform = 'translateY(0)';
-                    }, 100 * index);
-                });
-            }, 500);
-        });
-    </script>
-    
-    <!-- Particle Canvas for Hero -->
-    <canvas id="particle-canvas" class="absolute inset-0 pointer-events-none"></canvas>
-    
     <script src="script.js"></script>
 </body>
 </html>
