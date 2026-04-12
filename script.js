@@ -248,8 +248,8 @@ function initCursorGlow() {
     if (!cursorGlow) return;
     
     document.addEventListener('mousemove', function(e) {
-        cursorGlow.style.left = e.clientX - 200 + 'px';
-        cursorGlow.style.top = e.clientY - 200 + 'px';
+        cursorGlow.style.left = e.clientX + 'px';
+        cursorGlow.style.top = e.clientY + 'px';
     });
 }
 
@@ -521,8 +521,219 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize scroll animations
     initScrollAnimations();
     
+    // Initialize image animations (reveal on scroll)
+    initImageReveal();
+    
+    // Initialize image parallax on images
+    initImageParallax();
+    
+    // Initialize hero particles
+    initHeroParticles();
+    
+    // Initialize image cluster parallax
+    initImageClusterParallax();
+    
     // Initialize testimonial slider
     initTestimonialSlider();
+    
+    // Initialize tracking
+    initTracking();
+    
+    // Initialize contact form
+    initContactForm();
+    
+    // Initialize smooth scroll
+    initSmoothScroll();
+    
+    // Initialize service cards animation
+    initServiceCardsAnimation();
+    
+    // Initialize client logos
+    initClientLogos();
+    
+    // Initialize scroll progress
+    initScrollProgress();
+    
+    // Initialize CTA interactions
+    initCTAInteractions();
+});
+
+// ==========================================
+// IMAGE REVEAL ON SCROLL
+// ==========================================
+function initImageReveal() {
+    const images = document.querySelectorAll('.premium-image, .reveal-on-scroll, .image-container');
+    
+    if (images.length === 0) return;
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    });
+    
+    images.forEach(img => observer.observe(img));
+}
+
+// ==========================================
+// SCROLL PROGRESS INDICATOR
+// ==========================================
+function initScrollProgress() {
+    const progressBar = document.getElementById('scroll-progress');
+    if (!progressBar) return;
+    
+    window.addEventListener('scroll', () => {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrollPercent = (scrollTop / docHeight) * 100;
+        progressBar.style.width = scrollPercent + '%';
+    }, { passive: true });
+}
+
+// ==========================================
+// CTA INTERACTIONS (RIPPLE + FEEDBACK)
+// ==========================================
+function initCTAInteractions() {
+    const ctaButtons = document.querySelectorAll('.cta-primary, .cta-secondary');
+    
+    ctaButtons.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            // Create ripple effect
+            const rect = this.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const ripple = document.createElement('span');
+            ripple.style.cssText = `
+                position: absolute;
+                width: 20px;
+                height: 20px;
+                background: rgba(255,255,255,0.4);
+                border-radius: 50%;
+                transform: translate(-50%, -50%) scale(0);
+                animation: rippleEffect 0.6s ease-out forwards;
+                left: ${x}px;
+                top: ${y}px;
+                pointer-events: none;
+            `;
+            
+            this.style.position = 'relative';
+            this.style.overflow = 'hidden';
+            this.appendChild(ripple);
+            
+            setTimeout(() => ripple.remove(), 600);
+        });
+    });
+    
+    // Add ripple keyframes if not exists
+    if (!document.getElementById('ripple-style')) {
+        const style = document.createElement('style');
+        style.id = 'ripple-style';
+        style.textContent = `
+            @keyframes rippleEffect {
+                to {
+                    transform: translate(-50%, -50%) scale(20);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+}
+
+// ==========================================
+// IMAGE PARALLAX ON MOUSE MOVE
+// ==========================================
+function initImageParallax() {
+    const containers = document.querySelectorAll('.parallax-image, .premium-image, .image-container');
+    
+    if (containers.length === 0) return;
+    
+    containers.forEach(container => {
+        container.addEventListener('mousemove', (e) => {
+            const rect = container.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / rect.width - 0.5;
+            const y = (e.clientY - rect.top) / rect.height - 0.5;
+            
+            const moveX = x * 15;
+            const moveY = y * 15;
+            
+            const img = container.querySelector('img');
+            if (img) {
+                img.style.transform = `translate3d(${moveX}px, ${moveY}px, 0) scale(1.05)`;
+            }
+        });
+        
+        container.addEventListener('mouseleave', () => {
+            const img = container.querySelector('img');
+            if (img) {
+                img.style.transform = 'translate3d(0, 0, 0) scale(1)';
+            }
+        });
+    });
+}
+
+// ==========================================
+// IMAGE CLUSTER PARALLAX
+// ==========================================
+function initImageClusterParallax() {
+    const cluster = document.getElementById('image-cluster');
+    if (!cluster) return;
+    
+    const layers = cluster.querySelectorAll('.image-layer');
+    const cards = cluster.querySelectorAll('.image-card');
+    
+    cluster.addEventListener('mousemove', (e) => {
+        const rect = cluster.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        
+        // Move each layer at different speeds
+        layers.forEach((layer, index) => {
+            const speed = (index + 1) * 8;
+            const moveX = x * speed;
+            const moveY = y * speed;
+            
+            if (layer.classList.contains('layer-back')) {
+                layer.style.transform = `translate3d(${moveX}px, ${moveY}px, -30px) scale(1.1)`;
+            } else if (layer.classList.contains('layer-mid')) {
+                layer.style.transform = `translate3d(${moveX * 1.5}px, ${moveY * 1.5}px, 0) scale(1)`;
+            } else if (layer.classList.contains('layer-front')) {
+                layer.style.transform = `translate3d(${moveX * 2}px, ${moveY * 2}px, 30px) scale(0.95)`;
+            }
+        });
+        
+        // Move individual cards slightly
+        cards.forEach((card, index) => {
+            const speed = (index + 1) * 5;
+            const cardX = x * speed;
+            const cardY = y * speed;
+            card.style.transform = `translate3d(${cardX}px, ${cardY}px, 0)`;
+        });
+    });
+    
+    cluster.addEventListener('mouseleave', () => {
+        layers.forEach((layer, index) => {
+            if (layer.classList.contains('layer-back')) {
+                layer.style.transform = 'translate3d(0, 0, -30px) scale(1.1)';
+            } else if (layer.classList.contains('layer-mid')) {
+                layer.style.transform = 'translate3d(0, 0, 0) scale(1)';
+            } else if (layer.classList.contains('layer-front')) {
+                layer.style.transform = 'translate3d(0, 0, 30px) scale(0.95)';
+            }
+        });
+        
+        cards.forEach(card => {
+            card.style.transform = 'translate3d(0, 0, 0)';
+        });
+    });
+}
     
     // Initialize tracking
     initTracking();
@@ -553,4 +764,372 @@ document.addEventListener('DOMContentLoaded', function() {
             showMouseConnections: !isMobile
         });
     }
+    
+    // Initialize hero particles (separate canvas for hero)
+    initHeroParticles();
+    
+    // Initialize parallax effect
+    initParallax();
 });
+
+// ==========================================
+// HERO PARTICLES (Lightweight for Hero)
+// ==========================================
+function initHeroParticles() {
+    const canvas = document.getElementById('hero-particles');
+    if (!canvas) return;
+    
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    const isMobile = window.innerWidth < 768;
+    const particleCount = isMobile ? 25 : 50;
+    
+    function resize() {
+        const rect = canvas.parentElement.getBoundingClientRect();
+        canvas.width = rect.width;
+        canvas.height = rect.height;
+    }
+    
+    function createParticles() {
+        particles = [];
+        for (let i = 0; i < particleCount; i++) {
+            particles.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                vx: (Math.random() - 0.5) * 0.3,
+                vy: (Math.random() - 0.5) * 0.3,
+                radius: Math.random() * 1.5 + 0.5,
+                alpha: Math.random() * 0.4 + 0.1
+            });
+        }
+    }
+    
+    function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        particles.forEach(p => {
+            p.x += p.vx;
+            p.y += p.vy;
+            
+            if (p.x < 0) p.x = canvas.width;
+            if (p.x > canvas.width) p.x = 0;
+            if (p.y < 0) p.y = canvas.height;
+            if (p.y > canvas.height) p.y = 0;
+            
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(133, 165, 149, ${p.alpha})`;
+            ctx.fill();
+        });
+        
+        // Draw connections
+        for (let i = 0; i < particles.length; i++) {
+            for (let j = i + 1; j < particles.length; j++) {
+                const dx = particles[i].x - particles[j].x;
+                const dy = particles[i].y - particles[j].y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                
+                if (distance < 100) {
+                    const opacity = (1 - distance / 100) * 0.15;
+                    ctx.beginPath();
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(particles[j].x, particles[j].y);
+                    ctx.strokeStyle = `rgba(63, 100, 116, ${opacity})`;
+                    ctx.lineWidth = 0.5;
+                    ctx.stroke();
+                }
+            }
+        }
+        
+        requestAnimationFrame(draw);
+    }
+    
+    resize();
+    createParticles();
+    draw();
+    
+    window.addEventListener('resize', () => {
+        resize();
+        createParticles();
+    });
+}
+
+// ==========================================
+// PARALLAX EFFECT
+// ==========================================
+function initParallax() {
+    const hero = document.getElementById('hero-parallax');
+    if (!hero) return;
+    
+    const textEl = hero.querySelector('.parallax-text');
+    const imagesEl = hero.querySelector('.parallax-images');
+    
+    let targetX = 0;
+    let targetY = 0;
+    let currentX = 0;
+    let currentY = 0;
+    
+    hero.addEventListener('mousemove', (e) => {
+        const rect = hero.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        
+        targetX = x * 30;
+        targetY = y * 20;
+    });
+    
+    hero.addEventListener('mouseleave', () => {
+        targetX = 0;
+        targetY = 0;
+    });
+    
+    function animate() {
+        currentX += (targetX - currentX) * 0.08;
+        currentY += (targetY - currentY) * 0.08;
+        
+        if (textEl) {
+            textEl.style.transform = `translate3d(${currentX * 0.5}px, ${currentY * 0.5}px, 0)`;
+        }
+        
+        if (imagesEl) {
+            imagesEl.style.transform = `translate3d(${-currentX}px, ${-currentY}px, 0)`;
+        }
+        
+        requestAnimationFrame(animate);
+    }
+    
+    animate();
+}
+
+// ==========================================
+// 3D LOGISTICS SCENE (Three.js)
+// ==========================================
+function init3DScene() {
+    const canvas = document.getElementById('hero-3d-canvas');
+    if (!canvas || typeof THREE === 'undefined') {
+        console.log('Three.js not loaded, using fallback');
+        return;
+    }
+    
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+    
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    
+    camera.position.z = 5;
+    
+    // Colors
+    const colorPrimary = new THREE.Color(0x3f6474);
+    const colorSecondary = new THREE.Color(0x85a595);
+    const colorAccent = new THREE.Color(0x22a564);
+    
+    // Ambient light
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
+    scene.add(ambientLight);
+    
+    // Point lights
+    const light1 = new THREE.PointLight(colorPrimary, 1, 100);
+    light1.position.set(5, 5, 5);
+    scene.add(light1);
+    
+    const light2 = new THREE.PointLight(colorSecondary, 0.8, 100);
+    light2.position.set(-5, -5, 5);
+    scene.add(light2);
+    
+    // Create network sphere
+    const sphereGroup = new THREE.Group();
+    scene.add(sphereGroup);
+    
+    // Wireframe sphere
+    const sphereGeometry = new THREE.IcosahedronGeometry(2, 2);
+    const sphereMaterial = new THREE.MeshBasicMaterial({
+        color: colorPrimary,
+        wireframe: true,
+        transparent: true,
+        opacity: 0.3
+    });
+    const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
+    sphereGroup.add(sphere);
+    
+    // Inner glow sphere
+    const innerGeometry = new THREE.IcosahedronGeometry(1.8, 1);
+    const innerMaterial = new THREE.MeshBasicMaterial({
+        color: colorAccent,
+        transparent: true,
+        opacity: 0.1
+    });
+    const innerSphere = new THREE.Mesh(innerGeometry, innerMaterial);
+    sphereGroup.add(innerSphere);
+    
+    // Network nodes
+    const nodes = [];
+    const nodePositions = [
+        { x: 2, y: 0.5, z: 0.5 },
+        { x: -1.5, y: 1.5, z: 0.8 },
+        { x: 1, y: -1.5, z: 1 },
+        { x: -0.5, y: 2, z: -0.5 },
+        { x: 1.8, y: -0.8, z: -0.8 },
+        { x: -2, y: -1, z: 0.3 },
+        { x: 0.5, y: 1.2, z: 1.5 },
+        { x: -1, y: -0.5, z: -1.2 }
+    ];
+    
+    nodePositions.forEach((pos, i) => {
+        const nodeGeometry = new THREE.SphereGeometry(0.08, 16, 16);
+        const nodeMaterial = new THREE.MeshBasicMaterial({
+            color: i % 2 === 0 ? colorAccent : colorSecondary,
+            transparent: true,
+            opacity: 0.8
+        });
+        const node = new THREE.Mesh(nodeGeometry, nodeMaterial);
+        node.position.set(pos.x, pos.y, pos.z);
+        sphereGroup.add(node);
+        nodes.push({ mesh: node, originalPos: { ...pos }, phase: Math.random() * Math.PI * 2 });
+    });
+    
+    // Connection lines
+    const lineMaterial = new THREE.LineBasicMaterial({
+        color: colorSecondary,
+        transparent: true,
+        opacity: 0.2
+    });
+    
+    for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+            const points = [];
+            points.push(new THREE.Vector3(nodes[i].originalPos.x, nodes[i].originalPos.y, nodes[i].originalPos.z));
+            points.push(new THREE.Vector3(nodes[j].originalPos.x, nodes[j].originalPos.y, nodes[j].originalPos.z));
+            const lineGeometry = new THREE.BufferGeometry().setFromPoints(points);
+            const line = new THREE.Line(lineGeometry, lineMaterial);
+            sphereGroup.add(line);
+        }
+    }
+    
+    // Animated flight paths (arcs)
+    const arcs = [];
+    const arcPositions = [
+        { start: 0, end: 1 },
+        { start: 2, end: 3 },
+        { start: 4, end: 5 },
+        { start: 6, end: 7 }
+    ];
+    
+    arcPositions.forEach(arc => {
+        const startNode = nodes[arc.start];
+        const endNode = nodes[arc.end];
+        
+        const midX = (startNode.originalPos.x + endNode.originalPos.x) / 2;
+        const midY = (startNode.originalPos.y + endNode.originalPos.y) / 2 + 0.5;
+        const midZ = (startNode.originalPos.z + endNode.originalPos.z) / 2;
+        
+        const curve = new THREE.QuadraticBezierCurve3(
+            new THREE.Vector3(startNode.originalPos.x, startNode.originalPos.y, startNode.originalPos.z),
+            new THREE.Vector3(midX, midY, midZ),
+            new THREE.Vector3(endNode.originalPos.x, endNode.originalPos.y, endNode.originalPos.z)
+        );
+        
+        const points = curve.getPoints(50);
+        const geometry = new THREE.BufferGeometry().setFromPoints(points);
+        const material = new THREE.LineBasicMaterial({
+            color: colorAccent,
+            transparent: true,
+            opacity: 0.4
+        });
+        const line = new THREE.Line(geometry, material);
+        sphereGroup.add(line);
+        
+        // Animated dot along arc
+        const dotGeometry = new THREE.SphereGeometry(0.04, 8, 8);
+        const dotMaterial = new THREE.MeshBasicMaterial({ color: colorAccent });
+        const dot = new THREE.Mesh(dotGeometry, dotMaterial);
+        sphereGroup.add(dot);
+        
+        arcs.push({ curve, dot, phase: Math.random() * Math.PI * 2 });
+    });
+    
+    // Floating cargo containers
+    const containerGroup = new THREE.Group();
+    scene.add(containerGroup);
+    
+    const containerPositions = [
+        { x: 3.5, y: 0.5, z: 0 },
+        { x: -3.5, y: -0.5, z: 0.5 },
+        { x: 3, y: 1.5, z: -1 },
+        { x: -3, y: 1, z: -0.5 }
+    ];
+    
+    containerPositions.forEach((pos, i) => {
+        const boxGeometry = new THREE.BoxGeometry(0.3, 0.2, 0.2);
+        const boxMaterial = new THREE.MeshBasicMaterial({
+            color: i % 2 === 0 ? colorPrimary : colorSecondary,
+            transparent: true,
+            opacity: 0.6
+        });
+        const box = new THREE.Mesh(boxGeometry, boxMaterial);
+        box.position.set(pos.x, pos.y, pos.z);
+        containerGroup.add(box);
+    });
+    
+    // Mouse interaction
+    let mouseX = 0;
+    let mouseY = 0;
+    let targetRotationX = 0;
+    let targetRotationY = 0;
+    
+    document.addEventListener('mousemove', (e) => {
+        mouseX = (e.clientX / window.innerWidth - 0.5) * 0.5;
+        mouseY = (e.clientY / window.innerHeight - 0.5) * 0.5;
+    });
+    
+    // Animation loop
+    const clock = new THREE.Clock();
+    
+    function animate() {
+        requestAnimationFrame(animate);
+        
+        const time = clock.getElapsedTime();
+        
+        // Rotate sphere slowly
+        sphereGroup.rotation.y += 0.002;
+        sphereGroup.rotation.x = Math.sin(time * 0.3) * 0.1;
+        
+        // Mouse interaction
+        targetRotationX = mouseY * 0.5;
+        targetRotationY = mouseX * 0.5;
+        
+        sphereGroup.rotation.x += (targetRotationX - sphereGroup.rotation.x) * 0.05;
+        sphereGroup.rotation.y += (targetRotationY - sphereGroup.rotation.y) * 0.05;
+        
+        // Animate nodes (floating effect)
+        nodes.forEach(node => {
+            node.mesh.position.y = node.originalPos.y + Math.sin(time * 2 + node.phase) * 0.1;
+            node.mesh.position.x = node.originalPos.x + Math.cos(time * 1.5 + node.phase) * 0.05;
+        });
+        
+        // Animate arc dots
+        arcs.forEach(arc => {
+            const t = (time * 0.5 + arc.phase) % 1;
+            const point = arc.curve.getPoint(t);
+            arc.dot.position.copy(point);
+        });
+        
+        // Animate containers
+        containerGroup.children.forEach((box, i) => {
+            box.position.y += Math.sin(time * 2 + i) * 0.003;
+            box.rotation.y += 0.002;
+        });
+        
+        renderer.render(scene, camera);
+    }
+    
+    animate();
+    
+    // Handle resize
+    window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+}

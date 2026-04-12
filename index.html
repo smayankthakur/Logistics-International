@@ -9,8 +9,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <link rel="stylesheet" href="style.css">
-</head>
 </head>
 <body class="bg-slate-900 text-slate-200 antialiased">
     <!-- Cursor Glow Effect -->
@@ -23,6 +23,19 @@
             <div class="absolute inset-0 w-16 h-16 border-4 border-green-100 border-t-green-500 rounded-full animate-spin" style="animation-direction: reverse; animation-duration: 1.5s;"></div>
         </div>
     </div>
+    
+    <!-- Fallback: Auto-hide loader after 5 seconds -->
+    <script>
+        setTimeout(function() {
+            var loader = document.getElementById('loading-screen');
+            if (loader && loader.style.display !== 'none') {
+                loader.style.opacity = '0';
+                setTimeout(function() {
+                    loader.style.display = 'none';
+                }, 500);
+            }
+        }, 5000);
+    </script>
 
     <!-- Navbar -->
     <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 glass-nav">
@@ -30,7 +43,7 @@
             <div class="flex items-center justify-between h-20">
                 <!-- Logo + Brand -->
                 <a href="#" class="flex items-center space-x-3 group">
-                    <img src="logo.png" alt="Logistics International" class="h-10 w-auto object-contain">
+                    <img src="logo2.png" alt="Logistics International" class="h-10 w-auto object-contain">
                     <div class="flex items-baseline">
                         <span class="text-xl font-bold tracking-wide" style="color: #3f6474;">Logistics</span>
                         <span class="text-xl font-bold tracking-wide" style="color: #85a595;">International</span>
@@ -83,95 +96,127 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Premium Hero Section -->
     <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <!-- Particle Network Canvas (behind content) -->
-        <canvas id="particle-canvas" class="absolute inset-0 pointer-events-none z-0"></canvas>
+        <!-- Scroll Progress -->
+        <div class="scroll-progress" id="scroll-progress"></div>
         
-        <!-- Gradient Mesh Background -->
-        <div class="gradient-mesh-3d"></div>
+        <!-- 1. Gradient Mesh Background -->
+        <div class="hero-gradient-mesh"></div>
         
-        <!-- Light Orbs -->
-        <div class="light-orb orb-1"></div>
-        <div class="light-orb orb-2"></div>
-        <div class="light-orb orb-3"></div>
+        <!-- 2. Particle Layer -->
+        <canvas id="hero-particles" class="absolute inset-0 pointer-events-none"></canvas>
         
-        <!-- Particles -->
-        <div class="particles-container">
-            <div class="particle" style="top: 20%; left: 10%; animation-delay: 0s;"></div>
-            <div class="particle" style="top: 40%; left: 25%; animation-delay: -2s; width: 3px; height: 3px;"></div>
-            <div class="particle" style="top: 60%; left: 40%; animation-delay: -4s;"></div>
-            <div class="particle" style="top: 30%; left: 60%; animation-delay: -6s; width: 5px; height: 5px;"></div>
-            <div class="particle" style="top: 70%; left: 75%; animation-delay: -8s;"></div>
-            <div class="particle" style="top: 50%; left: 85%; animation-delay: -10s; width: 3px; height: 3px;"></div>
-            <div class="particle" style="top: 80%; left: 15%; animation-delay: -12s;"></div>
-            <div class="particle" style="top: 15%; left: 70%; animation-delay: -3s; width: 4px; height: 4px;"></div>
-            <div class="particle" style="top: 85%; left: 50%; animation-delay: -7s;"></div>
-            <div class="particle" style="top: 45%; left: 90%; animation-delay: -11s; width: 3px; height: 3px;"></div>
-        </div>
+        <!-- 3. Ambient Light Orbs -->
+        <div class="ambient-orb orb-1"></div>
+        <div class="ambient-orb orb-2"></div>
         
-        <!-- Noise Overlay -->
-        <div class="noise-overlay"></div>
+        <!-- Cursor Glow -->
+        <div id="cursor-glow" class="cursor-glow"></div>
         
+        <!-- Hero Content -->
         <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20">
-            <div class="grid lg:grid-cols-2 gap-12 items-center">
-                <!-- Left Content -->
-                <div class="hero-content">
-                    <div class="inline-flex items-center px-4 py-2 bg-[#22a564]/20 rounded-full mb-6 border border-[#22a564]/30">
-                        <span class="w-2 h-2 bg-[#22a564] rounded-full mr-2 animate-pulse"></span>
-                        <span class="text-sm text-green-300 font-medium">Trusted by 500+ businesses worldwide</span>
-                    </div>
-                    
-                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6">
-                        Delivering<br>
-                        <span class="animate-gradient-text">Speed Across</span><br>
-                        Borders
-                    </h1>
-                    
-                    <p class="text-lg #22a564 mb-8 max-w-lg">
-                        Smart logistics solutions designed for fast-moving global businesses.
-                    </p>
-                    
-                    <div class="flex flex-col sm:flex-row gap-4">
-                        <a href="#contact" class="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-[#22a564] to-[#22a564] text-white font-semibold rounded-xl hover:shadow-xl hover:shadow-[#22a564]/40 hover:scale-105 transition-all transform animate-glow">
-                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
-                            </svg>
-                            Get Instant Quote
-                        </a>
-                        <!-- <a href="#tracking" class="inline-flex items-center justify-center px-8 py-4 glass-btn text-white font-semibold rounded-xl hover:scale-105 transition-all">
-                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
-                            </svg>
-                            Track Shipment
-                        </a> -->
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <!-- Left: Glass Panel Content -->
+                <div class="hero-content-wrapper">
+                    <div class="glass-panel-content reveal-on-scroll">
+                        <!-- Trust Badge -->
+                        <div class="trust-badge">
+                            <span class="w-2 h-2 bg-[#22a564] rounded-full mr-2 animate-pulse"></span>
+                            <span class="text-sm text-green-300 font-medium">Trusted by 500+ businesses worldwide</span>
+                        </div>
+                        
+                        <!-- Headline -->
+                        <h1 class="hero-headline">
+                            Delivering<br>
+                            <span class="animate-gradient-text">Speed Across</span><br>
+                            Borders — <span class="text-[#22a564]">Without Delays</span>
+                        </h1>
+                        
+                        <!-- Subheadline -->
+                        <p class="hero-subheadline">
+                            Reliable, real-time logistics solutions trusted by global businesses to move faster and smarter.
+                        </p>
+                        
+                        <!-- Trust Microcopy -->
+                        <div class="trust-microcopy">
+                            <div class="trust-item">
+                                <svg class="w-5 h-5 text-[#22a564]" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                                <span>Trusted by 500+ businesses</span>
+                            </div>
+                            <div class="trust-item">
+                                <svg class="w-5 h-5 text-[#22a564]" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                                <span>Real-time tracking</span>
+                            </div>
+                            <div class="trust-item">
+                                <svg class="w-5 h-5 text-[#22a564]" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                                <span>24h response guarantee</span>
+                            </div>
+                        </div>
+                        
+                        <!-- CTA Buttons -->
+                        <div class="cta-container">
+                            <a href="#contact" class="cta-primary" id="primary-cta">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                                </svg>
+                                Get Instant Quote
+                            </a>
+                            <a href="#tracking" class="cta-secondary">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                Track Shipment
+                            </a>
+                        </div>
                     </div>
                 </div>
                 
-                <!-- Right: Truck Image with Logo Branding -->
-                <div class="relative h-[400px] lg:h-[500px] hero-content truck-container" style="animation-delay: 0.2s;">
-                    <div class="truck-wrapper">
-                        <!-- Truck Image Container -->
-                        <div class="truck-image-wrapper">
-                            <img src="https://dhl-freight-connections.com/wp-content/uploads/2024/04/express-delivery-e1574084171945-2-1.png" alt="Logistics Truck" class="truck-image">
-                            <!-- Logo Overlay on Truck -->
-                            <div class="truck-logo-overlay">
-                                <img src="logo.png" alt="Logistics International" class="truck-logo">
-                            </div>
+                <!-- Right: Image Cluster -->
+                <div class="image-cluster-container" id="image-cluster">
+                    <!-- Background Layer (blurred) -->
+                    <div class="image-layer layer-back">
+                        <div class="image-card premium-image floating float-delay-1">
+                            <img src="https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=400&q=80" alt="Cargo Containers">
                         </div>
-                        <!-- Shadow Below Truck -->
-                        <div class="truck-shadow"></div>
+                        <div class="image-card premium-image floating float-delay-3">
+                            <img src="https://images.unsplash.com/photo-1569154941061-e231b4725ef1?w=400&q=80" alt="Air Freight">
+                        </div>
+                    </div>
+                    
+                    <!-- Mid Layer -->
+                    <div class="image-layer layer-mid">
+                        <div class="image-card premium-image floating float-delay-2">
+                            <img src="https://images.unsplash.com/photo-1578575437130-527eed3c0bce?w=400&q=80" alt="Logistics">
+                        </div>
+                    </div>
+                    
+                    <!-- Foreground Layer (main) -->
+                    <div class="image-layer layer-front">
+                        <div class="image-card premium-image floating main-image shadow-depth auto-sweep">
+                            <img src="https://dhl-freight-connections.com/wp-content/uploads/2024/04/express-delivery-e1574084171945-2-1.png" alt="Delivery Truck">
+                        </div>
+                        <div class="image-card premium-image floating float-delay-4">
+                            <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=400&q=80" alt="Warehouse">
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         
+        <!-- Mobile Sticky CTA -->
+        <div class="mobile-sticky-cta md:hidden">
+            <a href="#contact" class="sticky-cta-btn">
+                Get Instant Quote
+            </a>
+        </div>
+        
         <!-- Scroll Indicator -->
-        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce hidden md:block">
             <div class="w-6 h-10 border-2 border-slate-600 rounded-full flex items-start justify-center p-2">
                 <div class="w-1.5 h-3 bg-[#22a564] rounded-full"></div>
             </div>
-</div>
+        </div>
     </section>
 
     <!-- Our Partners Section -->
@@ -245,8 +290,8 @@
             
             <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 <!-- Service Card 1 - Air Freight -->
-                <div class="service-card relative bg-white rounded-2xl p-6 shadow-lg animate-on-scroll">
-                    <div class="service-image-container">
+                <div class="service-card relative bg-white rounded-2xl p-6 shadow-lg animate-on-scroll reveal-on-scroll">
+                    <div class="service-image-container premium-image shadow-depth">
                         <img src="https://images.unsplash.com/photo-1569154941061-e231b4725ef1?w=400&q=80" alt="Air Freight - Airplane" class="service-image">
                     </div>
                     <h3 class="text-xl font-bold text-slate-900 mb-3 mt-4">Air Freight</h3>
@@ -254,8 +299,8 @@
                 </div>
                 
                 <!-- Service Card 2 - Ocean Shipping -->
-                <div class="service-card relative bg-white rounded-2xl p-6 shadow-lg animate-on-scroll stagger-1">
-                    <div class="service-image-container">
+                <div class="service-card relative bg-white rounded-2xl p-6 shadow-lg animate-on-scroll stagger-1 reveal-on-scroll">
+                    <div class="service-image-container premium-image shadow-depth">
                         <img src="https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=400&q=80" alt="Ocean Shipping - Cargo Containers" class="service-image">
                     </div>
                     <h3 class="text-xl font-bold text-slate-900 mb-3 mt-4">Ocean Shipping</h3>
@@ -263,8 +308,8 @@
                 </div>
                 
                 <!-- Service Card 3 - Warehousing -->
-                <div class="service-card relative bg-white rounded-2xl p-6 shadow-lg animate-on-scroll stagger-2">
-                    <div class="service-image-container">
+                <div class="service-card relative bg-white rounded-2xl p-6 shadow-lg animate-on-scroll stagger-2 reveal-on-scroll">
+                    <div class="service-image-container premium-image shadow-depth">
                         <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=400&q=80" alt="Warehousing - Storage Racks" class="service-image">
                     </div>
                     <h3 class="text-xl font-bold text-slate-900 mb-3 mt-4">Warehousing</h3>
@@ -272,8 +317,8 @@
                 </div>
                 
                 <!-- Service Card 4 - Customs Clearance -->
-                <div class="service-card relative bg-white rounded-2xl p-6 shadow-lg animate-on-scroll stagger-3">
-                    <div class="service-image-container">
+                <div class="service-card relative bg-white rounded-2xl p-6 shadow-lg animate-on-scroll stagger-3 reveal-on-scroll">
+                    <div class="service-image-container premium-image shadow-depth">
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3CGNClmac4KWiM8l01DnG2C3ivNJBkmQjVA&s" alt="Customs Clearance - Port" class="service-image">
                     </div>
                     <h3 class="text-xl font-bold text-slate-900 mb-3 mt-4">Customs Clearance</h3>
@@ -281,8 +326,8 @@
                 </div>
                 
                 <!-- Service Card 5 - Express Delivery -->
-                <div class="service-card relative bg-white rounded-2xl p-6 shadow-lg animate-on-scroll stagger-4">
-                    <div class="service-image-container">
+                <div class="service-card relative bg-white rounded-2xl p-6 shadow-lg animate-on-scroll stagger-4 reveal-on-scroll">
+                    <div class="service-image-container premium-image shadow-depth">
                         <img src="https://www.shutterstock.com/image-photo/professional-delivery-guy-pushing-hand-260nw-2521796449.jpg" alt="Express Delivery - Courier" class="service-image">
                     </div>
                     <h3 class="text-xl font-bold text-slate-900 mb-3 mt-4">Express Delivery</h3>
@@ -290,8 +335,8 @@
                 </div>
                 
                 <!-- Service Card 6 - Supply Chain -->
-                <div class="service-card relative bg-white rounded-2xl p-6 shadow-lg animate-on-scroll stagger-5">
-                    <div class="service-image-container">
+                <div class="service-card relative bg-white rounded-2xl p-6 shadow-lg animate-on-scroll stagger-5 reveal-on-scroll">
+                    <div class="service-image-container premium-image shadow-depth">
                         <img src="https://images.unsplash.com/photo-1580674285054-bed31e145f59?w=400&q=80" alt="Supply Chain - Logistics" class="service-image">
                     </div>
                     <h3 class="text-xl font-bold text-slate-900 mb-3 mt-4">Supply Chain</h3>
@@ -312,31 +357,31 @@
             
             <!-- Glassmorphism Logo Grid -->
             <div class="clients-grid">
-                <div class="client-logo-card">
+                <div class="client-logo-card reveal-on-scroll">
                     <img src="client/google.jpg" alt="Google" loading="lazy">
                 </div>
-                <div class="client-logo-card">
+                <div class="client-logo-card reveal-on-scroll">
                     <img src="client/ibm.jpg" alt="IBM" loading="lazy">
                 </div>
-                <div class="client-logo-card">
+                <div class="client-logo-card reveal-on-scroll">
                     <img src="client/honda.jpg" alt="Honda" loading="lazy">
                 </div>
-                <div class="client-logo-card">
+                <div class="client-logo-card reveal-on-scroll">
                     <img src="client/toyota.jpg" alt="Toyota" loading="lazy">
                 </div>
-                <div class="client-logo-card">
+                <div class="client-logo-card reveal-on-scroll">
                     <img src="client/nike.jpg" alt="Nike" loading="lazy">
                 </div>
-                <div class="client-logo-card">
+                <div class="client-logo-card reveal-on-scroll">
                     <img src="client/puma.jpg" alt="Puma" loading="lazy">
                 </div>
-                <div class="client-logo-card">
+                <div class="client-logo-card reveal-on-scroll">
                     <img src="client/nokia.jpg" alt="Nokia" loading="lazy">
                 </div>
-                <div class="client-logo-card">
+                <div class="client-logo-card reveal-on-scroll">
                     <img src="client/mobil.jpg" alt="Mobil" loading="lazy">
                 </div>
-                <div class="client-logo-card">
+                <div class="client-logo-card reveal-on-scroll">
                     <img src="client/Attero.jpg" alt="Attero" loading="lazy">
                 </div>
             </div>
@@ -1042,5 +1087,28 @@
 
     <!-- JavaScript -->
     <script src="script.js"></script>
+    
+    <!-- Ultimate Fallback: Force hide loader on any error -->
+    <script>
+        window.onerror = function() {
+            var loader = document.getElementById('loading-screen');
+            if (loader) {
+                loader.style.display = 'none';
+            }
+        };
+        
+        // Final failsafe - ensure loader hides
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                var loader = document.getElementById('loading-screen');
+                if (loader) {
+                    loader.style.opacity = '0';
+                    setTimeout(function() {
+                        loader.style.display = 'none';
+                    }, 500);
+                }
+            }, 100);
+        });
+    </script>
 </body>
 </html>
